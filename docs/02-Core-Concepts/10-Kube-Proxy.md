@@ -22,10 +22,10 @@ It's job is to look for new services, and everytime a new service is created, It
 
 - ![kube-proxy](../../images/kube-proxy.PNG)
 
-We can see Ip rules using the below command
+We can see the Ip rules using the below command:
 
 ```
-sudo iptables -L -t nat
+ sudo iptables -L -t nat
 
 ```
 
