@@ -6,7 +6,7 @@ In this section we will take a look at kubelet.
 
 #### Kubelet is the sole point of contact for the kubernetes cluster in the worker nodes.
 
-- The **`kubelet`** is reposible for creating the pods/containers on the nodes, the scheduler only decides which pods goes where.
+- The **`kubelet`** is resposible for creating the pods/containers on the nodes, the scheduler only decides which pods goes where.
 
   ![kubelet](../../images/kubelet.PNG)
 
