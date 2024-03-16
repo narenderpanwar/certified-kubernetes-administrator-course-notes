@@ -47,7 +47,7 @@ Lets now take a look to create a nginx pod using **`kubectl`**.
 What does the `READY` column in the output of the `kubectl get pods` command indicate?
 
 ```
-Number of containers running/Total number of containers
+Number of running containers in Pod/Total number of containers in Pod
 ```
 
 ![kubectl](../../images/kubectl.PNG)
