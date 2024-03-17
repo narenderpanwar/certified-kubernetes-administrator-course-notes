@@ -4,3 +4,9 @@
 
 ![commands](../../images/commands.PNG)
 
+![commands](../../images/commands1.PNG)
+
+![commands](../../images/commands2.PNG)
+
+![commands](../../images/commands3.PNG)
+
