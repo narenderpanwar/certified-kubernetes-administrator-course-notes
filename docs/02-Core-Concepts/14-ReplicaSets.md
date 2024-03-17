@@ -7,7 +7,7 @@ In this section, we will take a look at the below
 - Replication Controller
 - ReplicaSet
 
-#### Controllers are brain behind kubernetes
+#### Controllers are brain behind kubernetes and as discussed earlier, a controller is a process that continuously monitors the state of the components within the system and works towards bringing the whole system to the desired functioning state.
 
 ## What is a Replica and Why do we need a replication controller?
 
@@ -54,21 +54,21 @@ apiVersion: v1
 ```
 
 - To Create the replication controller
-  
+
   ```
   $ kubectl create -f rc-definition.yaml
   ```
 - To list all the replication controllers
-  
+
   ```
   $ kubectl get replicationcontroller
   ```
 - To list pods that are launch by the replication controller
-  
+
   ```
   $ kubectl get pods
   ```
-  
+
   ![rc3](../../images/rc3.PNG)
 
 ## Creating a ReplicaSet
@@ -105,21 +105,21 @@ apiVersion: apps/v1
 #### ReplicaSet requires a selector definition when compare to Replication Controller.
 
 - To Create the replicaset
-  
+
   ```
   $ kubectl create -f replicaset-definition.yaml
   ```
 - To list all the replicaset
-  
+
   ```
   $ kubectl get replicaset
   ```
 - To list pods that are launch by the replicaset
-  
+
   ```
   $ kubectl get pods
   ```
-  
+
   ![rs1](../../images/rs1.PNG)
 
 ## Labels and Selectors
@@ -180,4 +180,3 @@ $ kubectl scale --replicas=6 replicaset myapp-replicaset
 
 - https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/
 - https://kubernetes.io/docs/concepts/workloads/controllers/replicationcontroller/
-
