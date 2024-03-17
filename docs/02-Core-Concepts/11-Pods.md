@@ -7,7 +7,9 @@ In this section, we will take a look at PODS.
 - POD introduction
 - How to deploy pod?
 
-#### Kubernetes doesn't deploy containers directly on the worker node.
+#### Kubernetes doesn't deploy containers directly on the worker node but into a Kubernetes object called a Pod.
+
+#### A Pod Manisfest yaml is nothing but a running definition fo a Docker container.
 
 ![pod](../../images/pod.PNG)
 
@@ -22,6 +24,7 @@ In this section, we will take a look at PODS.
 ## Multi-Container PODs
 
 - A single pod can have multiple containers except for the fact that they are usually not multiple containers of the **`same kind`**.
+- Both the containers share the same volume or storage and network, hence they can communicate using localhost.
   
   ![pod3](../../images/pod3.PNG)
 
