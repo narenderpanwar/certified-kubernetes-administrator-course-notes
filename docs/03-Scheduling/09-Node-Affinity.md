@@ -92,7 +92,6 @@ In this section, we will talk about "Node Affinity" feature in kubernetes.
 
 - **`requiredDuringSchedulingIgnoredDuringExecution`** : This type of node affinity means that a pod must be scheduled onto a node that meets the defined rules. If no nodes match the rules, the pod won't be scheduled at all.
 - **`preferredDuringSchedulingIgnoredDuringExecution`** : With this type of node affinity, Kubernetes will try its best to schedule the pod onto a node that meets the defined rules, but it's not mandatory. If no nodes match the rules, the pod will still be scheduled anyway.
-
 - Planned (For future)
   
   - requiredDuringSchedulingRequiredDuringExecution
@@ -100,11 +99,6 @@ In this section, we will talk about "Node Affinity" feature in kubernetes.
   
   ![nat](../../images/nat.PNG)
 
-## Node Affinity Types States
-
-![nats](../../images/nats.PNG)
-
-![nats1](../../images/nats1.PNG)
 
 #### K8s Reference Docs
 
