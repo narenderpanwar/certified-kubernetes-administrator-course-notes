@@ -10,10 +10,9 @@
 ## Configure Static Pod
 
 - The designated directory can be any directory on the host and the location of that directory is passed in to the kubelet as an option while running the service.
-  
- - The option is named as **`--pod-manifest-path`**.
-  
-  ![sp](../../images/sp.PNG)
+- The option is named as **`--pod-manifest-path`**.
+
+![sp](../../images/sp.PNG)
 
 ## Another way to configure static pod
 
@@ -36,6 +35,13 @@
 ![sp3](../../images/sp3.PNG)
 
 ## Static Pods - Use Case
+
+Since static Pods are not dependent on the Kubernetes control plane, you can use static Pods `to deploy the control plane components itself as Pods on a Node.`
+
+Well, start by installing **`kubelet`** on all the master Nodes, then create Pod definition files that uses docker images of the various control plane components such as the API server, controller, ETCD, et cetera.
+Place the definition files in the designated manifest folder, and the kubelet takes care of deploying the control plane components themselves as Pods on the cluster.
+
+This way, you don't have to download the binaries, configure services, or worry about the services crashing. If any of these services were to crash, since it's a static Pod, it'll automatically be restarted by the kubelet. That's how the kube admin tool sets up a Kubernetes cluster.
 
 ![sp4](../../images/sp4.PNG)
 
