@@ -57,7 +57,7 @@ In this section, we will take a look at taints and tolerations.
 
 ![tp](../../images/tp.PNG)
 
-#### Taints and Tolerations do not tell the pod to go to a particular node. Instead, they tell the node to only accept pods with certain tolerations.
+#### Taints and Tolerations do not tell the pod to go to a particular node. Instead, they tell the node to only accept pods with certain tolerations. Hence, it is possible that the pod with toleration can go to any of the Nodes available.
 
 ---
 
@@ -70,7 +70,7 @@ This is because, when the Kubernetes cluster is first set up, a taint is set on 
   $ kubectl describe node kubemaster |grep Taint
   ```
 
------------
+---
 
 ![tntm](../../images/tntm.PNG)
 
