@@ -27,6 +27,10 @@ In this section, we will take a look at taints and tolerations.
   ```
   $ kubectl taint nodes node1 app=blue:NoSchedule
   ```
+  
+  
+- The taint-effect explains what would happen to Pods that do not tolerate the taint.
+
 - There are 3 taint effects
   
   - **`NoSchedule`** : When a node has a taint with the "NoSchedule" effect, it means that pods without a matching toleration will not be scheduled to run on that node. Essentially, it tells Kubernetes not to place any pods on that node unless they specifically tolerate the taint.
