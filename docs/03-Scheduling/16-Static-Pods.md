@@ -2,6 +2,8 @@
 
 - Static pods in Kubernetes are the pods that are directly managed by the kubelet daemon on a specific node, rather than being managed by the Kubernetes control plane.
 - These pods are typically defined via static pod manifests located on the node's file system (default path - /etc/kubernetes/manifests) monitored by the kubelet.
+- Static Pods have node name appended at the end.
+  For ex - `webapp-vfgd-node01`
 
 #### How do you provide a pod definition file to the kubelet without a kube-apiserver?
 
