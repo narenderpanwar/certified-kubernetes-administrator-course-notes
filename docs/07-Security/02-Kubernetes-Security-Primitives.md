@@ -15,8 +15,6 @@ In this section, we will take a look at kubernetes security primitives
 
 ## 2) Securing Kubernetes Cluster:
 
-![seck](../../images/seck.PNG)
-
 - **`Authentication Mechanisms:`**
   
   - Determine who can access the cluster.
@@ -32,8 +30,6 @@ In this section, we will take a look at kubernetes security primitives
   - Implemented through role-based access controls (RBAC).
   - Users associated with groups having specific permissions.
   - Other authorization modules include attribute-based access control, Node authorizers, and webhooks.
-
-  
 
 ![seck](../../images/seck.PNG)
 
