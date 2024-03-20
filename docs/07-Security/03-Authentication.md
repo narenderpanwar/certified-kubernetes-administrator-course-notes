@@ -23,12 +23,12 @@ In this section, we will take a look at authentication in a kubernetes cluster
 
 - All user access is managed by the kube apiserver and all of the requests goes through apiserver.
 - The kube apiserver then authenticates before processing them.
-
+  
   ![acc3](../../images/acc3.PNG)
 
 ## So how does the kube apiserver autheticates?
 
-## Authentication Mechanisms
+# Authentication Mechanisms
 
 - There are different authentication mechanisms that can be configured.
   
@@ -42,7 +42,7 @@ In this section, we will take a look at authentication in a kubernetes cluster
 
 ![auth3](../../images/auth3.PNG)
 
-## kube-apiserver configuration
+## Kube-apiserver configuration
 
 - If you set up via kubeadm then update kube-apiserver.yaml manifest file with the option.
   
