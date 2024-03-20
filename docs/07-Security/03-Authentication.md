@@ -57,9 +57,7 @@ In this section, we will take a look at authentication in a kubernetes cluster
   ```
   
   ![auth5](../../images/auth5.PNG)
-  
-- To authenticate using the token while accessing the API server specify the **`token`** using Authorization: Bearer header in a curl command.
-
+- To authenticate using the **`token`**  while accessing the API server specify the **`token`** using Authorization: Bearer header in a curl command.
 - We can have additional column in the user-details.csv file to assign users to specific groups.
   
   ```
