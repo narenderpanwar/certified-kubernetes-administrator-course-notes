@@ -21,19 +21,21 @@ In this section, we will take a look at authentication in a kubernetes cluster
 
 ![acc2](../../images/acc2.PNG)
 
-- All user access is managed by apiserver and all of the requests goes through apiserver.
-  
+- All user access is managed by the kubec apiserver and all of the requests goes through apiserver.
+- The kube apiserver then authenticates before processing them.
   ![acc3](../../images/acc3.PNG)
+
+## So how does the kube apiserver autheticates?
 
 ## Authentication Mechanisms
 
 - There are different authentication mechanisms that can be configured.
-  - Static user and token file.
-  - Static user and password file.
-  - Certificates.
-  - Third-party authentication protocols (LDAP, Kerberos).
   
-    ![auth2](../../images/auth2.PNG)
+  - Static user and password or token file.
+  - Certificates.
+  - Third-party authentication protocols (LDAP, Kerberos etc).
+  
+  ![auth2](../../images/auth2.PNG)
 
 ## Authentication Mechanisms - Basic
 
