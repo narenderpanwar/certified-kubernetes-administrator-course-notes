@@ -21,8 +21,9 @@ In this section, we will take a look at authentication in a kubernetes cluster
 
 ![acc2](../../images/acc2.PNG)
 
-- All user access is managed by the kubec apiserver and all of the requests goes through apiserver.
+- All user access is managed by the kube apiserver and all of the requests goes through apiserver.
 - The kube apiserver then authenticates before processing them.
+
   ![acc3](../../images/acc3.PNG)
 
 ## So how does the kube apiserver autheticates?
