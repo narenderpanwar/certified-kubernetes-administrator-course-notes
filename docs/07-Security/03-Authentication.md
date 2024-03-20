@@ -50,14 +50,21 @@ In this section, we will take a look at authentication in a kubernetes cluster
 
 ## Authenticate User
 
-- To authenticate using the basic credentials while accessing the API server specify the username and password in a curl command.
+- To authenticate using the basic credentials while accessing the API server specify the **`username & password`** in a curl command.
   
   ```
   $ curl -v -k http://master-node-ip:6443/api/v1/pods -u "user1:password123"
   ```
   
   ![auth5](../../images/auth5.PNG)
+  
+- To authenticate using the token while accessing the API server specify the **`token`** using Authorization: Bearer header in a curl command.
+
 - We can have additional column in the user-details.csv file to assign users to specific groups.
+  
+  ```
+  $ curl -v -k http://master-node-ip:6443/api/v1/pods --header "Authorization: Bearer KpjCVbI7rCFAgu1cUc48"
+  ```
   
   ![auth6](../../images/auth6.PNG)
 
