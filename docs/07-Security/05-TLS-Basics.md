@@ -31,7 +31,9 @@ In this section, we will take a look at TLS Basics
 
 ## Asymmetric Encryption
 
-- Instead of using single key to encrypt and decrypt data, asymmetric encryption uses a pair of keys, a private key and a public key.
+- Instead of using single key to encrypt and decrypt data, asymmetric encryption uses a pair of keys, a **`private key`** and a **`public key`** (say **`public lock`** for the sake of simplicity)
+  
+  ![ae](../../images/ae1.png)
   
   ![cert3](../../images/cert3.PNG)
   
