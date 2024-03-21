@@ -46,12 +46,20 @@ In this section, we will take a look at TLS Basics
   
   - You have a server in your environment that you need access to and you don't want to use passwords as they're too risky so you decide to use key pairs.
   - You generate a public and private key pair by running the ssh-keygen command. It creates two files, ID_RSA is the private key and ID_RSA.pub is the public key. Well, not a public key, a public lock.
-  
-  ---
+  - You then secure your server by locking down all access to it using public lock. It's usually done by adding an entry of your public key into the server's SSH authorized_keys file.
+    
+    ![ssh](../../images/ssh1.png)
+  - If you want to SSH, you specify the location of your private key in your SSH command.
+  - What if you have other servers in your environment? How do you secure more than one server with your key pair?
+  - Well, you can create copies of your public lock and place them on as many servers as you want. You can use the same private key to SSH into all of your servers securely.
+    ![cert3](../../images/cert3.PNG)
+  - But what if other users need access to your servers?
+  - Well, they can do the same thing. They can generate their own public and private key pairs. As the only person who has access to those servers, you can create an additional door for them and lock it with their public locks, copy their public locks to all the servers, and now other users can access the servers using their private keys.
+    ![cert4](../../images/cert4.PNG)
 
-![cert3](../../images/cert3.PNG)
+---
 
-![cert4](../../images/cert4.PNG)
+
 
 ![cert5](../../images/cert5.PNG)
 
