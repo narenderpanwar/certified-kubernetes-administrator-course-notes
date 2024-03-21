@@ -63,6 +63,9 @@ In this section, we will take a look at TLS Basics
 - The problem we had earlier with symmetric encryption was that the key used to encrypt data has to be sent to the server over the network along with the encrypted data, and so there is a risk of the hacker getting the key to decrypt the data.
   **`What if we could somehow get the key to the server safely?`**
 - To securely transfer the symmetric key from the client to the server, we use **`Asymmetric encryption.`**
+- So we generate a public and private key pair on the server. The SSH keygen command that was used earlier to create a pair of keys, was for SSH purposes. Here we use the open SSL command to generate a private and public key pair.
+  
+  ![openssl](../../images/openssl.png)
 
 ![cert5](../../images/cert5.PNG)
 
