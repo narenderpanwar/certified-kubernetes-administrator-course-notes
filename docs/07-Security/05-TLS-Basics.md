@@ -32,16 +32,30 @@ In this section, we will take a look at TLS Basics
 ## Asymmetric Encryption
 
 - Instead of using single key to encrypt and decrypt data, asymmetric encryption uses a pair of keys, a **`private key`** and a **`public key`** (say **`public lock`** for the sake of simplicity)
+- A key, which is only with me, so it's private and a lock that anyone can access, so it's public.
+
+![ae](../../images/ae1.png)
+
+- If you encrypt or lock the data with your lock, you can only open it with the associated private key. So your private key must always be secure with you and not be shared with anyone else, it's private, but the lock is public and maybe shared with others, but they can only lock something with it.
   
-  ![ae](../../images/ae1.png)
+  ![ae](../../images/ae2.png)
   
-  ![cert3](../../images/cert3.PNG)
+  ---
   
-  ![cert4](../../images/cert4.PNG)
+  Before we go back to our web server example, let's look at an even simpler use case of securing SSH access to servers using key pairs.
   
-  ![cert5](../../images/cert5.PNG)
+  - You have a server in your environment that you need access to and you don't want to use passwords as they're too risky so you decide to use key pairs.
+  - You generate a public and private key pair by running the ssh-keygen command. It creates two files, ID_RSA is the private key and ID_RSA.pub is the public key. Well, not a public key, a public lock.
   
-  ![cert6](../../images/cert6.PNG)
+  ---
+
+![cert3](../../images/cert3.PNG)
+
+![cert4](../../images/cert4.PNG)
+
+![cert5](../../images/cert5.PNG)
+
+![cert6](../../images/cert6.PNG)
 
 #### How do you look at a certificate and verify if it is legit?
 
