@@ -59,7 +59,9 @@ In this section, we will take a look at TLS Basics
 
 ---
 
-
+- Let's go back to our web server example.
+- The problem we had earlier with symmetric encryption was that the key used to encrypt data has to be sent to the server over the network along with the encrypted data, and so there is a risk of the hacker getting the key to decrypt the data.
+  **`What if we could somehow get the key to the server safely?`**
 
 ![cert5](../../images/cert5.PNG)
 
