@@ -107,6 +107,7 @@ What if you could look at the public key you received from the server and say if
 #### How do you generate legitimate certificate? How do you get your certificates singed by someone with authority?
 
 - That's where **`Certificate Authority (CA)`** comes in for you. Some of the popular ones are Symantec, DigiCert, Comodo, GlobalSign etc.
+- The way this works is, you generate a certificate signing a request or CSR using the key you generated earlier and the domain name of your website. You can do this using the open SSL command.
   
   ![cert8](../../images/cert8.PNG)
   
