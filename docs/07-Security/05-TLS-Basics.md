@@ -101,7 +101,7 @@ What if you could look at the public key you received from the server and say if
 
 - who signed and issued the certificate.
 - If you generate the certificate then you will have it sign it by yourself; that is known as self-signed certificate.
-  
+- If you looked at the certificate you received from the hacker closely, you would've noticed that it was a fake certificate that was signed by the hacker himself. As a matter of fact, your browser does that for you. `All of the web browsers are built in with a certificate validation mechanism` that checks the certificate received from the server and validates it to make sure it is legitimate. If it identifies it to be a fake certificate, then it actually warns you.
   ![cert7](../../images/cert7.PNG)
 
 #### How do you generate legitimate certificate? How do you get your certificates singed by someone with authority?
