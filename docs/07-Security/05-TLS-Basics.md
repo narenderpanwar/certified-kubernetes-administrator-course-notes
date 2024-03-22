@@ -91,6 +91,11 @@ In this section, we will take a look at TLS Basics
 
 ---
 
+What if you could look at the public key you received from the server and say if it is a legitimate key from the actual bank server?
+
+- When the server sends the key, it does not send the key along, it sends a **`Certificate`** that has the key in it.
+- It has other information like who the certificate is issued to, the public key of that server, the location of that server etc.
+
 #### How do you look at a certificate and verify if it is legit?
 
 - who signed and issued the certificate.
