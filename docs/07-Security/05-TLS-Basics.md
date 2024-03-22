@@ -110,10 +110,10 @@ What if you could look at the public key you received from the server and say if
 - The way this works is, you generate a certificate signing a request or CSR using the key you generated earlier and the domain name of your website. You can do this using the open SSL command.
   
   ![cert8](../../images/cert8.PNG)
-  
+- This generates a my-bank.csr file, which is the certificate signing request that should be sent to the CA for signing. The certificate authorities then verify your details and once it checks out, they sign the certificate and send it back to you. You now have a certificate signed by a CA that the browsers trust.
   ![cert9](../../images/cert9.PNG)
-  
-  ![cert10](../../images/cert10.PNG)
+
+![cert10](../../images/cert10.PNG)
 
 ## Public Key Infrastructure
 
