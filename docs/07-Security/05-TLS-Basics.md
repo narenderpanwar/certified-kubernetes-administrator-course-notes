@@ -78,10 +78,16 @@ In this section, we will take a look at TLS Basics
 - The user then sends this to the server. The hacker also gets a copy. The server uses the private key to decrypt the message and retrieve the symmetry key from it. However, the hacker does not have the private key to decrypt and retrieve the symmetric key from the message. The hacker only has the public key with which he can only lock or encrypt a message and not decrypt the message. Hence, the symmetric key is now safely available only to the user and the server.
   ![openssl](../../images/ssl2.png)
 - The receiver can use the same symmetric key to decrypt data and retrieve information. The hacker is left with the encrypted messages and public keys with which he can't decrypt any data. With **`asymmetric encryption`**, we have successfully transferred the symmetric keys from the user to the server, and with **`symmetric encryption`** we have secured all future communication between them.
-
+  
   ![cert5](../../images/cert5.PNG)
 
-![cert6](../../images/cert6.PNG)
+---
+
+- The hacker now looks for new ways to hack into your account, and so he realizes that the only way he can get your credential is by getting you to type it into a form he presents. So he creates a website that looks exactly like your bank's website. The design is the same, the graphics are the same, the website is a replica of the actual bank's website. He hosts the website on his own server. He wants you to think it's secure too, so he generates his own set of public and private key pairs and configures them on his web server. And finally, he somehow manages to tweak your environment or your network to route your request going to your bank's website to his servers.
+
+  ![cert6](../../images/cert6.PNG)
+
+---
 
 #### How do you look at a certificate and verify if it is legit?
 
