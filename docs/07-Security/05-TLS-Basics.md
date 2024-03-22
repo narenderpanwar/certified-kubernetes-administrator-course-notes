@@ -84,8 +84,10 @@ In this section, we will take a look at TLS Basics
 ---
 
 - The hacker now looks for new ways to hack into your account, and so he realizes that the only way he can get your credential is by getting you to type it into a form he presents. So he creates a website that looks exactly like your bank's website. The design is the same, the graphics are the same, the website is a replica of the actual bank's website. He hosts the website on his own server. He wants you to think it's secure too, so he generates his own set of public and private key pairs and configures them on his web server. And finally, he somehow manages to tweak your environment or your network to route your request going to your bank's website to his servers.
-
-  ![cert6](../../images/cert6.PNG)
+- You typed in HTTPS in the URL to make sure the communication is secure and encrypted. Your browser receives a key, you send encrypted symmetric key and then you send your credentials encrypted with the key and the receiver decrypts the credentials with the same symmetric key. You've been communicating securely in an encrypted manner, but with the hacker's server.
+  ![cert6](../../images/ssl4.png)
+  ![cert7](../../images/ssl5.png)
+  ![cert8](../../images/ssl3.png)
 
 ---
 
