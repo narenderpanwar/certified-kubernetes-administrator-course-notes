@@ -112,14 +112,9 @@ What if you could look at the public key you received from the server and say if
   ![cert8](../../images/cert8.PNG)
 - This generates a my-bank.csr file, which is the certificate signing request that should be sent to the CA for signing. The certificate authorities then verify your details and once it checks out, they sign the certificate and send it back to you. You now have a certificate signed by a CA that the browsers trust.
   ![cert9](../../images/cert9.PNG)
-- But how do the browsers know that the CA itself was legitimate?
-- How would the browser know Symantec is a valid CA and that the certificate was in fact signed by Symantec and not by someone who says they are Symantec?
-- The CAs themselves have a set of public and private key pairs. The CAs use their private keys to sign the certificates. The public keys of all the CAs are built in to the browsers. The browser uses the public key of the CA to validate that the certificate was actually signed by the CA themselves. You can actually see them in the settings of your web browser under certificates, they're under trusted CAs tab.
+  
   ![cert10](../../images/cert10.PNG)
 
-## Public Key Infrastructure
-
-![pki](../../images/pki.PNG)
 
 ## Certificates naming convention
 
