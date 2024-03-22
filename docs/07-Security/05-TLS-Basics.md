@@ -79,7 +79,7 @@ In this section, we will take a look at TLS Basics
   ![openssl](../../images/ssl2.png)
 - The receiver can use the same symmetric key to decrypt data and retrieve information. The hacker is left with the encrypted messages and public keys with which he can't decrypt any data. With **`asymmetric encryption`**, we have successfully transferred the symmetric keys from the user to the server, and with **`symmetric encryption`** we have secured all future communication between them.
 
-![cert5](../../images/cert5.PNG)
+  ![cert5](../../images/cert5.PNG)
 
 ![cert6](../../images/cert6.PNG)
 
