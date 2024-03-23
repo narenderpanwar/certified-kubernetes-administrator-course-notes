@@ -12,12 +12,11 @@ In this section, we will take a look at TLS in kubernetes
   - **`Client certificates`** configured on the clients.
   
   ![tls](../../images/tls.png)
-- We will now see how these concepts relate to a Kubernetes cluster. The Kubernetes cluster consists of a set of master and worker nodes. Of course, all communication between these nodes need to be secure and must be encrypted. All interactions between all services and their clients need to be secure.
+- We will now see how these concepts relate to a Kubernetes cluster. The Kubernetes cluster consists of a set of master and worker nodes. Of course, all communication between these nodes need to be secure and must be encrypted. All interactions between all services and their clients need to be secure too.
   
   ![tls](../../images/tls1.png)
   ![tls](../../images/tls2.png)
   ![tls](../../images/tls3.png)
 - So that's too many certificates. Let's try and group them.
   ![certs](../../images/certs.PNG)
-  
 
