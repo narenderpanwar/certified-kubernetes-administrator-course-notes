@@ -31,7 +31,6 @@ In this section, we will take a look at kubeconfig in kubernetes
     You then create a context that specifies to use the my kube admin user to access the my kube playground cluster.
     
     ![kc5](../../images/kc5.PNG)
-    
 - To view the current kubeconfig file that is being used:
   
   ```
@@ -49,9 +48,8 @@ In this section, we will take a look at kubeconfig in kubernetes
   ```
   $ kubectl config use-context prod-user@production
   ```
-
+  
   ![kc7](../../images/kc7.PNG)
-
 - kubectl config help
   
   ```
@@ -61,6 +59,9 @@ In this section, we will take a look at kubeconfig in kubernetes
   ![kc8](../../images/kc8.PNG)
 
 ## What about namespaces?
+
+- Each cluster may be configured with multiple namespaces within it. So can you configure a context to switch to a particular namespace?
+- Yes. The context section in the kubeconfig file can take additional field called namespace where you can specify a particular namespace. This way, when you switch to that context, you will automatically be in a specific namespace. Finally, a word on certificates.
 
 ![kc9](../../images/kc9.PNG)
 
