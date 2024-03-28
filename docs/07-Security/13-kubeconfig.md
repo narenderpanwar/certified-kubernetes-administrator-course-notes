@@ -29,7 +29,9 @@ In this section, we will take a look at kubeconfig in kubernetes
     So how does it fit into our example?
     The server specification in our command goes into the cluster section. The admin user's keys and certificates goes into the user section.
     You then create a context that specifies to use the my kube admin user to access the my kube playground cluster.
+    
     ![kc5](../../images/kc5.PNG)
+    
 - To view the current kubeconfig file that is being used:
   
   ```
@@ -43,12 +45,12 @@ In this section, we will take a look at kubeconfig in kubernetes
   
   ![kc6](../../images/kc6.PNG)
 - How do you update your current context? Or change the current context
-
+  
   ```
   $ kubectl config use-context prod-user@production
   ```
 
-![kc7](../../images/kc7.PNG)
+  ![kc7](../../images/kc7.PNG)
 
 - kubectl config help
   
