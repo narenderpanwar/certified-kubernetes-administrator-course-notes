@@ -27,14 +27,18 @@
 ## Network Policy
 
 * Network policies are used to restrict communication between pods.
-* Policies are defined as Kubernetes objects and linked to pods using labels and selectors.
+  For example - We do not want the front end web server to be able to communicate with the database server directly? That is where you would implement a network policy to allow traffic to the DB server only from the API server.* Policies specify rules for ingress (incoming) and egress (outgoing) traffic.
+
+  ![npol](../../images/npol.PNG)
+
 * Policies specify rules for ingress (incoming) and egress (outgoing) traffic.
+  
 
-![npol](../../images/npol.PNG)
+  ![npol1](../../images/npol1.PNG)
 
-![npol1](../../images/npol1.PNG)
+* Policies are defined as Kubernetes objects and linked to pods using labels and selectors.
 
-![npolsec](../../images/npolsec.PNG)
+  ![npolsec](../../images/npolsec.PNG)
 
 ## Network Policy Rules
 
