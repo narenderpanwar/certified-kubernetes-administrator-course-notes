@@ -8,7 +8,7 @@ In this section, we will take a look at authorization in kubernetes
 
 - As an admin, we are able to perform any sort of operation but soon we will have others accessing the cluster as well such as the other administrators, developers, testers or other applications like monitoring applications or continuous delivery applications like Jenkins, etc.
 - So, we will be creating accounts for them to access the cluster by creating usernames and passwords or tokens, or signed TLS certificates or service accounts. But we don't want all of them to have the same level of access as us.
-  
+
   ![at1](../../images/at1.PNG)
 
 ## Authorization Mechanisms
@@ -25,10 +25,10 @@ In this section, we will take a look at authorization in kubernetes
 
 ## ABAC
 
-- Attribute-based authorization is where you associate a user or a group of users with a set of permissions.
+- Attribute-based authorization is where you associate a user or a group of users with a set of permissions. (`kind`: `Policy`)
 - In this case, we say the dev user can view, create and delete pods. You do this by creating a policy file with a set of policies defined in adjacent format this way you pass this file into the API server. Similarly, we create a policy definition file for each user or group in this file.
 - Now, every time you need to add or make a change in the security, you must edit this policy file manually and restart the Kube API Server. That is why, the attribute-based access control configurations are difficult to manage.
-  
+
   ![abac](../../images/abac.PNG)
 
 ## RBAC
@@ -49,13 +49,13 @@ In this section, we will take a look at authorization in kubernetes
 ## Authorization Modes
 
 - The mode options can be defined on the kube-apiserver
-  
+
   ![mode](../../images/mode.PNG)
 - When you specify multiple modes, it will authorize in the order in which it is specified
-  
-  ![mode1](../../images/mode1.PNG)
-  
-  #### K8s Reference Docs
-  
-  - https://kubernetes.io/docs/reference/access-authn-authz/authorization/
 
+  ![mode1](../../images/mode1.PNG)
+
+  #### K8s Reference Docs
+
+
+  - https://kubernetes.io/docs/reference/access-authn-authz/authorization/
