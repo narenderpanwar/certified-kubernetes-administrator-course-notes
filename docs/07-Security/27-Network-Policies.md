@@ -13,31 +13,26 @@
 
 ---
 
-* By default, pods in a Kubernetes cluster can communicate with each other using IPs, pod names, or services.
+* By default, pods in a Kubernetes cluster can communicate with each other using IPs, pod names, or services and
 * Kubernetes implements an "all-allow" rule by default, allowing traffic between any pods or services within the cluster.
-  
-  ![ing2](../../images/ing2.PNG)
+
+  ![nsec](../../images/nsec.PNG)
+
 
 ---
 
-## Network Security
-
-![nsec](../../images/nsec.PNG)
 
 ## Network Policy
 
 * Network policies are used to restrict communication between pods.
   For example - We do not want the front end web server to be able to communicate with the database server directly? That is where you would implement a network policy to allow traffic to the DB server only from the API server.* Policies specify rules for ingress (incoming) and egress (outgoing) traffic.
-
+  
   ![npol](../../images/npol.PNG)
-
 * Policies specify rules for ingress (incoming) and egress (outgoing) traffic.
   
-
   ![npol1](../../images/npol1.PNG)
-
 * Policies are defined as Kubernetes objects and linked to pods using labels and selectors.
-
+  
   ![npolsec](../../images/npolsec.PNG)
 
 ## Network Policy Rules
