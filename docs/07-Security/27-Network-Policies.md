@@ -15,12 +15,10 @@
 
 * By default, pods in a Kubernetes cluster can communicate with each other using IPs, pod names, or services and
 * Kubernetes implements an "all-allow" rule by default, allowing traffic between any pods or services within the cluster.
-
+  
   ![nsec](../../images/nsec.PNG)
 
-
 ---
-
 
 ## Network Policy
 
@@ -79,7 +77,10 @@
   
   ![note1](../../images/note1.PNG)
 
-#### Additional lecture on [Developing Networking Policies](https://kodekloud.com/topic/developing-network-policies/)
+# Detailed Example for Network Policy:
+
+![note1](../../images/np.png)
+
 
 #### K8s Reference Docs
 
