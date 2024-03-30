@@ -28,7 +28,7 @@ In this section, we will take a look at authorization in kubernetes
 - Attribute-based authorization is where you associate a user or a group of users with a set of permissions.
 - In this case, we say the dev user can view, create and delete pods. You do this by creating a policy file with a set of policies defined in adjacent format this way you pass this file into the API server. Similarly, we create a policy definition file for each user or group in this file.
 - Now, every time you need to add or make a change in the security, you must edit this policy file manually and restart the Kube API Server. That is why, the attribute-based access control configurations are difficult to manage.
-
+  
   ![abac](../../images/abac.PNG)
 
 ## RBAC
@@ -37,7 +37,7 @@ In this section, we will take a look at authorization in kubernetes
 - In this case for developers, we create a role with the set of permissions required for developers then we associate all the developers to that role. Similarly, create a role for security users with the right set of permissions required for them then associate the user to that role.
 - Now whenever a change needs to be made to the user's access we simply modify the role and it reflects on all developers immediately. Hence, Role-based access controls provide a more standard approach to managing access within the Kubernetes cluster.
 
-![rbac](../../images/rbac.PNG)
+  ![rbac](../../images/rbac.PNG)
 
 ## Webhook
 
