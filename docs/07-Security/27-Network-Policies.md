@@ -2,9 +2,8 @@
 
 - Take me to [Video Tutorials](https://kodekloud.com/topic/network-policies-3/)
 - Trafic flowing through a webserver serving frontend to users an app server serving backend API and a database server
-
+  
   ![traffic](../../images/traffic.PNG)
-
 - There are two types of traffic
   
   - Ingress
@@ -12,10 +11,14 @@
   
   ![ing1](../../images/ing1.PNG)
 
+---
+
 * By default, pods in a Kubernetes cluster can communicate with each other using IPs, pod names, or services.
 * Kubernetes implements an "all-allow" rule by default, allowing traffic between any pods or services within the cluster.
   
   ![ing2](../../images/ing2.PNG)
+
+---
 
 ## Network Security
 
