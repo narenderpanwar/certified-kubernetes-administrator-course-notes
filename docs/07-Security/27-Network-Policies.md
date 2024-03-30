@@ -3,7 +3,7 @@
 - Take me to [Video Tutorials](https://kodekloud.com/topic/network-policies-3/)
 - Trafic flowing through a webserver serving frontend to users an app server serving backend API and a database server
 
-![traffic](../../images/traffic.PNG)
+  ![traffic](../../images/traffic.PNG)
 
 - There are two types of traffic
   
@@ -13,7 +13,6 @@
   ![ing1](../../images/ing1.PNG)
 
 * By default, pods in a Kubernetes cluster can communicate with each other using IPs, pod names, or services.
-
 * Kubernetes implements an "all-allow" rule by default, allowing traffic between any pods or services within the cluster.
   
   ![ing2](../../images/ing2.PNG)
@@ -66,16 +65,16 @@
   ```
   $ kubectl create -f policy-definition.yaml
   ```
-
+  
   ![npol3](../../images/npol3.PNG)
-
+  
   ![npol4](../../images/npol4.PNG)
 
 ## Note
 
 * Network policy enforcement depends on the network solution used in the Kubernetes cluster.
 * Not all network solutions support network policies (e.g., Flannel).
-
+  
   ![note1](../../images/note1.PNG)
 
 #### Additional lecture on [Developing Networking Policies](https://kodekloud.com/topic/developing-network-policies/)
