@@ -5,14 +5,14 @@
 - In this case for developers, we create a role with the set of permissions required for developers then we associate all the developers to that role. Similarly, create a role for security users with the right set of permissions required for them then associate the user to that role.
 - Now whenever a change needs to be made to the user's access we simply modify the role and it reflects on all developers immediately. Hence, Role-based access controls provide a more standard approach to managing access within the Kubernetes cluster.
 
-
 ## How do we create a role?
 
 - Each role has 3 sections
-  - apiGroups
-  - resources
-  - verbs
-- create the role with kubectl command
+  
+  - **`apiGroups`** : For core group, you can leave the API group section as blank. For any other group, you specify the group name.
+  - **`resources`**
+  - **`verbs`**: The actions that they can perform.
+  
   ```
   apiVersion: rbac.authorization.k8s.io/v1
   kind: Role
@@ -34,7 +34,6 @@
 ## The next step is to link the **`User`** to that **`Role`**.
 
 - For this we create another object called **`RoleBinding`**. This role binding object links a user object to a role.
-- create the role binding using kubectl command
   
   ```
   apiVersion: rbac.authorization.k8s.io/v1
@@ -54,8 +53,7 @@
   ```
   $ kubectl create -f devuser-developer-binding.yaml
   ```
-  
-- Also note that the roles and role bindings fall under the scope of namespace.
+- Also note that the roles and role bindings fall under the scope of namespace. So here the dev user gets access to pod and config maps within the default namespace. If you want to limit the dev user's access within a different name space then specify the namespace within the metadata of the definition file while creating them.
   
   ![rbac1](../../images/rbac1.PNG)
 
