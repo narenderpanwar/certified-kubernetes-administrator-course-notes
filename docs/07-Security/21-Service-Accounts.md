@@ -18,16 +18,33 @@
 - For example, using curl, you could provide the bearer token as an authorization header while making a REST call to the Kubernetes API.
   ![sa](../../images/sa3.png)
 
----
+--- 
 
-- But what if your third-party application is hosted on the Kubernetes cluster itself?
+Important Note:
+
+- What if your third-party application is hosted on the Kubernetes cluster itself?
 - For example, we can have our custom Kubernetes dashboard application or the `Prometheus` application deployed on the Kubernetes cluster itself.
   In that case, this whole process of exporting the token and configuring the third-party application to use it can be made simple by `automatically mounting the service token secret as a volume inside the pod hosting the third-party application.`
-  This way, the token to access the Kubernetes API is already placed inside the pod and can be easily read by the application.
+  This way, the token to access the Kubernetes API is already placed inside the pod, can be easily read by the application and you do not need to provide it manually.
 
 ---
 
+# Default Service Account in Kubernetes
 
+In Kubernetes, a default service account named `default` is automatically created for every namespace. Each namespace has its own `default` service account. When a pod is created within a namespace, the default service account token is automatically mounted to that pod as a volume.
+
+## Automatic Creation of Default Service Account
+
+- For every namespace in Kubernetes, a `default` service account is automatically generated.
+- The `default` service account is associated with a token named `default-token`.
+- This token is used for basic Kubernetes API queries and is mounted to every pod created within the namespace.
+- The secret containing the token for the `default` service account is mounted automatically at the location `/var/run/secret/kubernetes.io/serviceaccount` inside the pod, even without specifying any secrets or volume mounts explicitly.
+  
+  ![sa](../../images/sa4.png)
+
+Note : Remember that the default service account is very much restricted. It only has permission to run basic Kubernetes API queries.
+
+# Use Cases of Service Accounts:
 
 1. **Authentication**:
    
