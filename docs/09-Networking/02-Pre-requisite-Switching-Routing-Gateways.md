@@ -129,8 +129,8 @@ This lecture series covers basic networking concepts, including switching, routi
   * Host A: 192.168.1.5 (Network 1)
   * Host B: 192.168.1.6 (Network 1) & 192.168.2.6 (Network 2)
   * Host C: 192.168.2.5 (Network 2)
-    
-- **Problem:**
+
+### Problem
 
 - By default, Host A cannot reach Host C due to separate networks and lack of routing information.
 
