@@ -9,9 +9,8 @@ This lecture series covers basic networking concepts, including switching, routi
   - We have two computers, A and B, laptops, desktops, VMs on the cloud, wherever, how does system A reach and communicate to B?
   - We connect them to a `Switch`and the`Switch creates a network` containing the two systems.
   - To connect the two systems to a switch, we need an `Interface` (eth0) on each host: physical or virtual, depending on the host. To see the interfaces for the host, we use the IP link command.
-  
+    
     ![switch](../../images/switch.png)
-  
   - To see the interfaces for the host
     
     ```
@@ -36,8 +35,10 @@ This lecture series covers basic networking concepts, including switching, routi
   
   ![net-14](../../images/switch2.png)
 
-* That's where **`Router`** comes in, a router connects two or more networks together.
-* When a computer on one network needs to communicate with a computer on another network, the packets are sent to the router.
+* That's where **`Router`** comes in, a router connects two or more networks together. Think of it as another server with many network ports.
+* Since it connects to the two separate networks, it gets two IPs assigned, one on each network. In the first network, we assign it an IP address 192.168.1.1 And in the second, we assign it an IP 192.168.2.1
+
+  ![net-14](../../images/switch3.png)
 * The router then forwards the packets to the appropriate network.
 
 - To see the existing routing table on the host system.
