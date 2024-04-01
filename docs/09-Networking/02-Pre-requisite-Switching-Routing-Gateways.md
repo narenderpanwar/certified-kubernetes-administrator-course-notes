@@ -10,7 +10,7 @@ This lecture series covers basic networking concepts, including switching, routi
   - We connect them to a `Switch`and the`Switch creates a network` containing the two systems.
   - To connect the two systems to a switch, we need an `Interface` (eth0) on each host: physical or virtual, depending on the host. To see the interfaces for the host, we use the IP link command.
   
-  ![switch](../../images/switch.png)
+    ![switch](../../images/switch.png)
   
   - To see the interfaces for the host
     
