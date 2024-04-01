@@ -11,23 +11,21 @@ This lecture series covers basic networking concepts, including switching, routi
   - To connect the two systems to a switch, we need an `Interface` (eth0) on each host: physical or virtual, depending on the host. To see the interfaces for the host, we use the IP link command.
   
   ![switch](../../images/switch.png)
-
+  
   - To see the interfaces for the host
-
-  ```
-  $ ip link
-  ```
-
-  - To see the IP Address interfaces.
-
-  ```
-  $ ip addr
-  ```
-
-- Let's assume the Switch creates a network with the address 192.168.1.0
+  
+    ```
+    $ ip link
+    ```
 
 
-
+  - Let's assume the Switch creates a network with the address 192.168.1.0
+  - We then assign the systems with IP addresses on the same network. For this, we use the command ip addr.
+  
+    ```
+    $ ip addr
+    ```
+  
   ![net-14](../../images/net14.PNG)
 
 ## Routing
