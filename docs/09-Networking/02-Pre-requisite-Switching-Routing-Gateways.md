@@ -41,28 +41,41 @@ This lecture series covers basic networking concepts, including switching, routi
   ![net-14](../../images/switch3.png)
 
 - To see the existing routing table on the host system.
-
+  
   ```
   $ route
   ```
-
+  
   ```
   $ ip route show
   or
   $ ip route list
   ```
+- To add entries into the routing table.
+  
+  ```
+  $ ip route add 192.168.1.0/24 via 192.168.2.1
+  ```
 
- - To add entries into the routing table.
+## Gateway
 
-    ```
-    $ ip route add 192.168.1.0/24 via 192.168.2.1
-    ```
-
-
-## Gateways
-
-* A gateway is the IP address of the router on a network.
-* Computers on a network need to be configured with the correct gateway address in order to communicate with computers on other networks.
+- When system B tries to send a packet to system C, how does it know where the router is on the network to send the packet through? The router is just another device on the network. There could be many other such devices. That's where we configure the systems with a `Gateway`
+  *Analogy* : If the Network is a room, then the gateway is a door to the outside world or to the other networks or to the internet. The systems need to know where that door is to go through that.
+- To see the existing routing table on the host system.
+  
+  ```
+  $ route
+  ```
+  
+  ![net-14](../../images/gw.png)
+- As you can see, there are no routing configurations as of now. Hence, system B will not be able to reach system C.
+- To configure a gateway on system B to reach the systems on network 192.168.2.0, run the IP route add command and specify that you can reach the 192.168.2.0 network through the door or gateway at 192.168.1.1
+  
+  ```
+  $ ip route add 192.168.2.0/24 via 192.168.1.1
+  ```
+  
+  ![net-14](../../images/gw1.png)
 
 - To add a default route.
 
