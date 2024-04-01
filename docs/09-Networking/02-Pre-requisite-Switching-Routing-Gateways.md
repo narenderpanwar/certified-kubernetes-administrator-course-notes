@@ -27,12 +27,16 @@ This lecture series covers basic networking concepts, including switching, routi
     ```
     $ ip addr add 192.168.1.11/24 dev eth0  [System B]
     ```
-  
-  ![net-14](../../images/net14.PNG)
+  - Once the links are up and the IP addresses are assigned, the two systems A and B can now communicate with each other through the switch. The switch can only enable communication within a network, which means it can receive packets from a host on the network and deliver it to other systems within the same network.
+    ![net-14](../../images/net14.PNG)
 
 ## Routing
 
-* A router connects two or more networks together.
+- But what if we have another network containing systems C and D at address 192.168.2.0 and the systems have IP address 192.168.2.10 and 198.168.2.11 respectively. `How does a system in one network reach a system in the other network?`
+  
+  ![net-14](../../images/switch2.png)
+
+* That's where **`Router`** comes in, a router connects two or more networks together.
 * When a computer on one network needs to communicate with a computer on another network, the packets are sent to the router.
 * The router then forwards the packets to the appropriate network.
 
