@@ -4,23 +4,31 @@ This lecture series covers basic networking concepts, including switching, routi
 
 ## Switching
 
-* A network is a group of computers connected together.
-* Computers can communicate with each other on the same network through a switch.
-* A switch is an intelligent device that forwards packets to the correct destination within the network.
+* So what is a `Network`?
+  
+  - We have two computers, A and B, laptops, desktops, VMs on the cloud, wherever, how does system A reach and communicate to B?
+  - We connect them to a `Switch`and the`Switch creates a network` containing the two systems.
+  - To connect the two systems to a switch, we need an `Interface` (eth0) on each host: physical or virtual, depending on the host. To see the interfaces for the host, we use the IP link command.
+  
+  ![switch](../../images/switch.png)
 
-- To see the interface on the host system
+  - To see the interfaces for the host
 
-```
-$ ip link
-```
+  ```
+  $ ip link
+  ```
 
-- To see the IP Address interfaces.
+  - To see the IP Address interfaces.
 
-```
-$ ip addr
-```
+  ```
+  $ ip addr
+  ```
 
-![net-14](../../images/net14.PNG)
+- Let's assume the Switch creates a network with the address 192.168.1.0
+
+
+
+  ![net-14](../../images/net14.PNG)
 
 ## Routing
 
