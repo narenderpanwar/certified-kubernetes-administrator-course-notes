@@ -1,4 +1,3 @@
-
 ## DNS
 
 - Every host has a DNS resolution configuration file at `/etc/resolv.conf`.
@@ -138,9 +137,11 @@ In this section, we will take a look at **DNS in the Linux**
 4. **Introduction of DNS Server:**
    
    - To centralize hostname resolution, a DNS server is introduced to manage all the enrties centrally. We then point all hosts to look up for that server if they need to resolve a host name to an IP address instead of its own /etc/hosts files.
-   - Each host's `/etc/resolv.conf` file is configured to point to the DNS server for hostname resolution.
-     
+   - `How do we point our host to a DNS server?`
      ![net-10](../../images/dns5.png)
+   - Every host has a DNS resolution configuration file at `/etc/resolv.conf`. You add an entry into it specifying the IP address of the DNS server. We say `nameserver` and point it to our DNS Server i.e `192.168.1.100`, and that should be it. Once this is configured on all of your hosts, every time a host comes up across a host name that it does not know about, it looks it up from the DNS server.
+     
+     ![net-10](../../images/dns6.png)
 5. **DNS Resolution Process:**
    
    - With DNS configured, hosts query the DNS server for hostname resolution.
