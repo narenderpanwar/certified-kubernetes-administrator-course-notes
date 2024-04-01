@@ -121,19 +121,18 @@ This lecture series covers basic networking concepts, including switching, routi
 ### Scenario
 
 - How do we get A to talk to C? Basically, if I try to ping 2.5 from A, it would say network is unreachable.
-
+  
   ![net-14](../../images/linuxhostasrouter.png)
-
 - This document outlines how to configure a Linux host (Host B) as a router to enable communication between two separate networks 192.168.1.0 and 192.168.2.0
 - **Network Layout:**
-
+  
   * Host A: 192.168.1.5 (Network 1)
   * Host B: 192.168.1.6 (Network 1) & 192.168.2.6 (Network 2)
   * Host C: 192.168.2.5 (Network 2)
-
+    
 - **Problem:**
-  
-  - By default, Host A cannot reach Host C due to separate networks and lack of routing information.
+
+- By default, Host A cannot reach Host C due to separate networks and lack of routing information.
 
 ### Solution
 
