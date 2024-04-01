@@ -1,49 +1,3 @@
-# Pre-requisite DNS
-
-- Take me to [Lecture](https://kodekloud.com/topic/prerequsite-dns/)
-
-In this section, we will take a look at **DNS in the Linux**
-
-## Name Resolution
-
-- With help of the `ping` command. Checking the reachability of the IP Addr on the Network.
-
-```
-$ ping 172.17.0.64
-PING 172.17.0.64 (172.17.0.64) 56(84) bytes of data.
-64 bytes from 172.17.0.64: icmp_seq=1 ttl=64 time=0.384 ms
-64 bytes from 172.17.0.64: icmp_seq=2 ttl=64 time=0.415 ms
-```
-
-- Checking with their hostname
-
-```
-$ ping web
-ping: unknown host web
-```
-
-- Adding entry in the `/etc/hosts` file to resolve by their hostname.
-
-```
-$ cat >> /etc/hosts
-172.17.0.64  web
-
-
-# Ctrl + c to exit
-```
-
-- It will look into the `/etc/hosts` file.
-
-```
-$ ping web
-PING web (172.17.0.64) 56(84) bytes of data.
-64 bytes from web (172.17.0.64): icmp_seq=1 ttl=64 time=0.491 ms
-64 bytes from web (172.17.0.64): icmp_seq=2 ttl=64 time=0.636 ms
-
-$ ssh web
-
-$ curl http://web
-```
 
 ## DNS
 
@@ -137,6 +91,23 @@ www.google.com.         63      IN      A       216.58.206.4
 ;; Query time: 6 msec
 ;; SERVER: 127.0.0.53#53(127.0.0.53)
 ```
+
+# Pre-requisite DNS
+
+- Take me to [Lecture](https://kodekloud.com/topic/prerequsite-dns/)
+
+In this section, we will take a look at **DNS in the Linux**
+
+## Name Resolution
+
+- With help of the `ping` command. We can check the reachability of the IP Address on the Network.
+  
+  ```
+  $ ping 172.17.0.64
+  PING 172.17.0.64 (172.17.0.64) 56(84) bytes of data.
+  64 bytes from 172.17.0.64: icmp_seq=1 ttl=64 time=0.384 ms
+  64 bytes from 172.17.0.64: icmp_seq=2 ttl=64 time=0.415 ms
+  ```
 
 # DNS
 
