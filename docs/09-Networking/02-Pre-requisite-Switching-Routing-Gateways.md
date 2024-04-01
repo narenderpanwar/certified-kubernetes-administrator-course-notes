@@ -79,46 +79,46 @@ This lecture series covers basic networking concepts, including switching, routi
   **`Remember, this has to be configured on all the systems.`**
   **`For example, if the system C wants to send a packet to system B, then you need to add a route on system C's routing table to access the network at 192.168.1.0 through the router configured with the IP address 192.168.2.1`**
   ![net-14](../../images/gw1.png)
-- Now, suppose these systems need access to the internet. Say they need access to Google at 172.217.194.0 network on the internet. So you connect the router to the internet, and then add a new route in your routing table to route all traffic to the network 172.217.194 through your router. There are so many different sites on different networks on the internet and would not be possible to add routes for each. Instead of adding a routing table entry for the same router's IP address for each of those networks, you can simply say for any network, use this router as the `default` gateway.
+- Now, suppose these systems need access to the internet. Say they need access to Google at 172.217.194.0 network on the internet. So you connect the router to the internet, and then add a new route in your routing table to route all traffic to the network 172.217.194 through your router. But there are thousands of sites on different networks on the internet and it would definitely not be possible to add routes for each. So, instead of adding a routing table entry for the same router's IP address for each of those networks, you can simply say for any network, use this router as the `default` gateway.
+  ![net-14](../../images/dgw.png)
 - Remember, instead of the word `default`, you could also say `0.0.0.0`. It means any IP destination. Both of these lines mean the same thing. A 0.0.0.0 entry in the gateway field indicates that you don't need a gateway.
   
-  ![net-14](../../images/dgw.png)
-
+  ![net-14](../../images/dgw1.png)
 - To add a default route.
 
-```
-$ ip route add default via 192.168.2.1
-```
+  ```
+  $ ip route add default via 192.168.2.1
+  ```
 
 - To check the IP forwarding is enabled on the host.
 
-```
-$ cat /proc/sys/net/ipv4/ip_forward
-0
+  ```
+  $ cat /proc/sys/net/ipv4/ip_forward
+  0
 
-$ echo 1 > /proc/sys/net/ipv4/ip_forward
-```
+  $ echo 1 > /proc/sys/net/ipv4/ip_forward
+  ```
 
 - Enable packet forwarding for IPv4.
 
-```
-$ cat /etc/sysctl.conf
+  ```
+  $ cat /etc/sysctl.conf
 
-# Uncomment the line
-net.ipv4.ip_forward=1
-```
+  # Uncomment the line
+  net.ipv4.ip_forward=1
+  ```
 
 - To view the sysctl variables.
 
-```
-$ sysctl -a
-```
+  ```
+  $ sysctl -a
+  ```
 
 - To reload the sysctl configuration.
 
-```
-$ sysctl --system
-```
+  ```
+  $ sysctl --system
+  ```
 
 ## Configuring a Host as a Router
 
