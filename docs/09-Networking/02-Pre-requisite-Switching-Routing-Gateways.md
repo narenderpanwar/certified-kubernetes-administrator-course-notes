@@ -51,11 +51,6 @@ This lecture series covers basic networking concepts, including switching, routi
   or
   $ ip route list
   ```
-- To add entries into the routing table.
-  
-  ```
-  $ ip route add 192.168.1.0/24 via 192.168.2.1
-  ```
 
 ## Gateway
 
@@ -67,6 +62,12 @@ This lecture series covers basic networking concepts, including switching, routi
   $ route
   ```
   
+  ```
+  $ ip route show
+  or
+  $ ip route list
+  ```
+  
   ![net-14](../../images/gw.png)
 - As you can see, there are no routing configurations as of now. Hence, system B will not be able to reach system C.
 - To configure a gateway on system B to reach the systems on network 192.168.2.0, run the IP route add command and specify that you can reach the 192.168.2.0 network through the door or gateway at 192.168.1.1
@@ -76,7 +77,6 @@ This lecture series covers basic networking concepts, including switching, routi
   ```
   
   ![net-14](../../images/gw1.png)
-
 - To add a default route.
 
 ```
