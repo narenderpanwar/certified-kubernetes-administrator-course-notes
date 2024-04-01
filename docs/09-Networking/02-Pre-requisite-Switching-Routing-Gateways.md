@@ -116,6 +116,42 @@ This lecture series covers basic networking concepts, including switching, routi
   $ sysctl --system
   ```
 
+## How to Configure a Linux Host as Router:
+
+### Scenario
+
+- How do we get A to talk to C? Basically, if I try to ping 2.5 from A, it would say network is unreachable.
+
+  ![net-14](../../images/linuxhostasrouter.png)
+
+- This document outlines how to configure a Linux host (Host B) as a router to enable communication between two separate networks 192.168.1.0 and 192.168.2.0
+- **Network Layout:**
+
+  * Host A: 192.168.1.5 (Network 1)
+  * Host B: 192.168.1.6 (Network 1) & 192.168.2.6 (Network 2)
+  * Host C: 192.168.2.5 (Network 2)
+
+- **Problem:**
+  
+  - By default, Host A cannot reach Host C due to separate networks and lack of routing information.
+
+### Solution
+
+1. **Routing Table Entries:**
+   * On Host A: Add a route to network 192.168.2.0 with gateway 192.168.1.6 (Host B).
+   * On Host C: Add a route to network 192.168.1.0 with gateway 192.168.2.6 (Host B).
+2. **Enable Packet Forwarding on Host B:**
+   * Edit `/proc/sys/net/ipv4/ip_forward` and set the value to 1 (temporarily enables forwarding).
+   * Modify `/etc/sysctl.conf` to set `net.ipv4.ip_forward` to 1 (persists across reboots).
+
+**Explanation:**
+
+* Routing tables tell hosts how to reach specific networks.
+* Packet forwarding allows Host B to send packets received on one interface (e.g., Network 1) out the other interface (e.g., Network 2).
+* By default, forwarding is disabled for security reasons.
+
+**Note:** This is a basic setup. More complex configurations might involve additional steps.
+
 ## Commands - Key Take Aways
 
 - **`ip link`**: Lists and modifies interfaces on the host.
@@ -134,6 +170,4 @@ This lecture series covers basic networking concepts, including switching, routi
   cat /proc/sys/net/ipv4/ip_forward
   1
   ```
-
-  
 
