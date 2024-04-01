@@ -75,8 +75,15 @@ This lecture series covers basic networking concepts, including switching, routi
   ```
   $ ip route add 192.168.2.0/24 via 192.168.1.1
   ```
-  
+- Running the route command again shows that we have a route added to reach the 192.168.2.0 series network through the router.
+  **`Remember, this has to be configured on all the systems.`**
+  **`For example, if the system C wants to send a packet to system B, then you need to add a route on system C's routing table to access the network at 192.168.1.0 through the router configured with the IP address 192.168.2.1`**
   ![net-14](../../images/gw1.png)
+- Now, suppose these systems need access to the internet. Say they need access to Google at 172.217.194.0 network on the internet. So you connect the router to the internet, and then add a new route in your routing table to route all traffic to the network 172.217.194 through your router. There are so many different sites on different networks on the internet and would not be possible to add routes for each. Instead of adding a routing table entry for the same router's IP address for each of those networks, you can simply say for any network, use this router as the `default` gateway.
+- Remember, instead of the word `default`, you could also say `0.0.0.0`. It means any IP destination. Both of these lines mean the same thing. A 0.0.0.0 entry in the gateway field indicates that you don't need a gateway.
+  
+  ![net-14](../../images/dgw.png)
+
 - To add a default route.
 
 ```
