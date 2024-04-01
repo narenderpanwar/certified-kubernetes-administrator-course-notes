@@ -13,17 +13,19 @@ This lecture series covers basic networking concepts, including switching, routi
   ![switch](../../images/switch.png)
   
   - To see the interfaces for the host
-  
+    
     ```
     $ ip link
     ```
-
-
   - Let's assume the Switch creates a network with the address 192.168.1.0
   - We then assign the systems with IP addresses on the same network. For this, we use the command ip addr.
-  
+    
     ```
-    $ ip addr
+    $ ip addr add 192.168.1.10/24 dev eth0  [System A]
+    ```
+    
+    ```
+    $ ip addr add 192.168.1.11/24 dev eth0  [System B]
     ```
   
   ![net-14](../../images/net14.PNG)
