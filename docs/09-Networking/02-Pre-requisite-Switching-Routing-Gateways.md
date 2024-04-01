@@ -85,60 +85,55 @@ This lecture series covers basic networking concepts, including switching, routi
   
   ![net-14](../../images/dgw1.png)
 - To add a default route.
-
+  
   ```
   $ ip route add default via 192.168.2.1
   ```
-
 - To check the IP forwarding is enabled on the host.
-
+  
   ```
   $ cat /proc/sys/net/ipv4/ip_forward
   0
-
+  
   $ echo 1 > /proc/sys/net/ipv4/ip_forward
   ```
-
 - Enable packet forwarding for IPv4.
-
+  
   ```
   $ cat /etc/sysctl.conf
-
+  
   # Uncomment the line
   net.ipv4.ip_forward=1
   ```
-
 - To view the sysctl variables.
-
+  
   ```
   $ sysctl -a
   ```
-
 - To reload the sysctl configuration.
-
+  
   ```
   $ sysctl --system
   ```
 
-## Configuring a Host as a Router
+## Commands - Key Take Aways
 
-* A Linux host can be configured as a router to enable communication between two networks.
-* This is done by adding routing entries to the routing tables of the hosts on the networks.
-* Additionally, IP forwarding must be enabled on the host that is acting as the router.
+- **`ip link`**: Lists and modifies interfaces on the host.
+- **`ip addr`**: Displays IP addresses assigned to interfaces.
+- **`ip addr add`**: Sets IP addresses on interfaces.
+  
+  - Changes made with these commands are temporary and valid until a restart.
+- **`ip route`** or **`route`**: Views the routing table.
+- **`ip route add`**: Adds entries into the routing table.
+- To make changes persistent:
+  
+  - Edit `/etc/network/interfaces` file.
+- To check if IP forwarding is enabled on a host (that is configured as a router):
+  
+  ```
+  cat /proc/sys/net/ipv4/ip_forward
+  1
+  ```
 
-## IP Forwarding
-
-* By default, IP forwarding is disabled on Linux hosts.
-* This is for security reasons to prevent unauthorized communication between networks.
-* To enable IP forwarding, the value of the `net.ipv4.ip_forward` file in `/proc/sys/net/ipv4` must be set to 1.
-* To make the change persistent across reboots, the value must also be set to 1 in the `/etc/sysctl.conf` file.
-
-## Commands
-
-* `ip link`: Lists and modifies interfaces on a host.
-* `ip addr`: Shows the IP addresses assigned to interfaces.
-* `ip addr add`: Sets IP addresses on interfaces. (Changes are not persistent until reboot.)
-* `ip route` or `route`: Views the routing table.
-* `ip route add`: Adds entries to the routing table.
-* `sysctl net.ipv4.ip_forward`: Checks if IP forwarding is enabled.
+  
 
