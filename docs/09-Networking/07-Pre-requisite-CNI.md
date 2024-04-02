@@ -33,8 +33,8 @@
   
   **For example**: When Rocket or Kubernetes creates a new container, they call the Bridge Program and pass the container ID and namespace to get networking configured for that container.
   ![CNI](../../images/cni2.png)
-
-With CNI, any container runtime can work with any compatible plugin.
+- But how do you make sure the program you create will work currently with these run times? How do you know that container run times like Kubernetes or Rocket will invoke your program correctly? `That's where we need some standards defined`.
+- A standard that defines how a program should look, how container run times will invoke them so that everyone can adhere to a single set of standards and develop solutions that work across run times. That's where container network interface comes in. The CNI is a set of standards that define how programs should be developed to solve networking challenges in a container runtime environments. `The programs are referred to as plugins`. In this case, `bridge` program that we have been referring to is a `plugin for CNI`.
 
 ### Benefits of CNI
 
@@ -84,3 +84,4 @@ In this section, we will take a look at **Pre-requisite Container Network Interf
 $ ls /opt/cni/bin/
 bridge  dhcp  flannel  host-device  host-local  ipvlan  loopback  macvlan  portmap  ptp  sample  tuning  vlan
 ```
+
