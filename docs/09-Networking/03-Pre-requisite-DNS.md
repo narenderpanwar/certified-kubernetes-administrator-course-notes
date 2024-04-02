@@ -158,10 +158,16 @@ In this section, we will take a look at **DNS in the Linux**
      ![net-10](../../images/dns7.png)
 8. **Fallback DNS Servers:**
    
-   - Additional DNS servers, such as public servers like 8.8.8.8, can be added to `/etc/resolv.conf` to resolve external hosts not present in the local DNS.
+   - What if you try to ping a server that is not in either list?
+     For example, I try and ping www.facebook.com. I don't have facebook.com in my /etc/hosts file and I don't have it in my DNS server, either. So in that case, it will fail.
+     
+     ![net-10](../../images/dns8.png)
+   - We can add another entry into our /etc/resolv.conf file to point to a nameserver that knows Facebook.
+     *For example*: Google's public DNS Server 8.8.8.8 is a common well-known public nameserver available on the internet hosted by Google that knows about all websites on the internet.
+     
 9. **Configuring DNS Forwarding:**
-    
-    - Internal DNS servers can be configured to forward unresolved queries to external DNS servers, ensuring comprehensive hostname resolution.
+   
+   - Internal DNS servers can be configured to forward unresolved queries to external DNS servers, ensuring comprehensive hostname resolution.
 10. **Limitations of External Access:**
     
     - Access to external sites like facebook.com may be restricted, depending on network configurations.
