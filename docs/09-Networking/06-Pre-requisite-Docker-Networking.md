@@ -68,133 +68,50 @@
   - Port mapping enables the mapping of a port on the host to a port on the container, effectively allowing traffic from external sources to reach the services running within the container.
   - With port mapping, users can specify which port on the host should be mapped to which port on the container, enabling external access to the services provided by the container.
     ![DN](../../images/dn8.png)
-- Mapping port 8080 on Docker host to port 80 on the container.
-- Allows access to the application using Docker host's IP and port 8080.
+  - Mapping port 8080 on Docker host to port 80 on the container.
+    
+    ```
+    $ docker run -itd --name nginx -p 8080(host):80(container) nginx
+    e7387bbb2e2b6cc1d2096a080445a6b83f2faeb30be74c41741fe7891402f6b6
+    ```
+
+
+
 - **Forwarding Traffic:**
   
   - Docker forwards traffic from one port to another using NAT rules.
   - Utilizes IP tables to create NAT rules.
   - Adds rules to Docker chain to change destination port.
   - Docker rule includes the container's IP as well.
-- **Conclusion:**
-  
-  - Docker provides various networking options including none, host, and bridge networks.
-  - Understanding Docker networking is crucial for managing containerized applications effectively.
 
-# Pre-requisite Docker Networking
 
-- Take me to [Lecture](https://kodekloud.com/topic/prerequsite-docker-networking/)
+  - Inspect the docker container to view the IPAddress.
 
-In this section, we will take a look at **Docker Networking**
-
-## To view the Network Device on the Host
-
-```
-$ ip link
-or
-$ ip link show docker0
-3: docker0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN mode DEFAULT group default
-    link/ether 02:42:cf:c3:df:f5 brd ff:ff:ff:ff:ff:ff
-```
-
-- With the help of `ip link add` command to type set `bridge` to `docker0`
-
-```
-$ ip link add docker0 type bridge
-```
-
-## To view the IP Addr of the interface docker0
-
-```
-$ ip addr
-or
-$ ip addr show docker0
-3: docker0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN group default
-    link/ether 02:42:cf:c3:df:f5 brd ff:ff:ff:ff:ff:ff
-    inet 172.18.0.1/24 brd 172.18.0.255 scope global docker0
-       valid_lft forever preferred_lft forever
-```
-
-## Run the command to create a Docker Container
-
-```
-$ docker run nginx
-```
-
-## To list the Network Namespace
-
-```
-$ ip netns
-1c452d473e2a (id: 2)
-db732004aa9b (id: 1)
-04acb487a641 (id: 0)
-default
-
-# Inspect the Docker Container
-
-$ docker inspect <container-id>
-
-# To view the interface attached with the local bridge docker0
-
-$ ip link
-3: docker0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP mode DEFAULT group default
-    link/ether 02:42:c8:3a:ea:67 brd ff:ff:ff:ff:ff:ff
-5: vetha3e33331@if3: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue master docker0 state UP mode DEFAULT group default
-    link/ether e2:b2:ad:c9:8b:98 brd ff:ff:ff:ff:ff:ff link-netnsid 0
-
-# with -n options with the network namespace to view the other end of the interface
-
-$ ip -n 04acb487a641 link
-1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN mode DEFAULT group default qlen 1000
-    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
-3: eth0@if5: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP mode DEFAULT group default
-    link/ether c6:f3:ca:12:5e:74 brd ff:ff:ff:ff:ff:ff link-netnsid 0
-
-# To view the IP Addr assigned to this interface 
-
-$ ip -n 04acb487a641 addr
-3: eth0@if5: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default
-    link/ether c6:f3:ca:12:5e:74 brd ff:ff:ff:ff:ff:ff link-netnsid 0
-    inet 10.244.0.2/24 scope global eth0
-       valid_lft forever preferred_lft forever
-```
-
-## Port Mapping
-
-- Creating a docker container.
-
-```
-$ docker run -itd --name nginx nginx
-d74ca9d57c1d8983db2c590df2fdd109e07e1972d6b361a6ecad8a942af5bf7e
-```
-
-- Inspect the docker container to view the IPAddress.
-
-```
-$ docker inspect nginx | grep -w IPAddress
+  ```
+  $ docker inspect nginx | grep -w IPAddress
             "IPAddress": "172.18.0.6",
                     "IPAddress": "172.18.0.6",
-```
+  ```
 
-- Accessing web page with the `curl` command.
+  - Accessing web page with the `curl` command.
 
-```
-$ curl --head  http://172.18.0.6:80
-HTTP/1.1 200 OK
-Server: nginx/1.19.2
-```
+  ```
+  $ curl --head  http://172.18.0.6:80
+  HTTP/1.1 200 OK
+  Server: nginx/1.19.2
+  ```
 
-- Port Mapping to docker container
+  - Port Mapping to docker container
 
-```
-$ docker run -itd --name nginx -p 8080:80 nginx
-e7387bbb2e2b6cc1d2096a080445a6b83f2faeb30be74c41741fe7891402f6b6
-```
+  ```
+  $ docker run -itd --name nginx -p 8080:80 nginx
+  e7387bbb2e2b6cc1d2096a080445a6b83f2faeb30be74c41741fe7891402f6b6
+  ```
 
-- Inspecting docker container to view the assgined ports.
+  - Inspecting docker container to view the assgined ports.
 
-```
-$ docker inspect nginx | grep -w -A5 Ports
+  ```
+  $ docker inspect nginx | grep -w -A5 Ports
 
   "Ports": {
                 "80/tcp": [
@@ -202,39 +119,39 @@ $ docker inspect nginx | grep -w -A5 Ports
                         "HostIp": "0.0.0.0",
                         "HostPort": "8080"
                     }
-```
+  ```
 
-- To view the IP Addr of the host system
+  - To view the IP Addr of the host system
 
-```
-$ ip a
+  ```
+  $ ip a
 
-# Accessing nginx page with curl command
+  # Accessing nginx page with curl command
 
-$ curl --head http://192.168.10.11:8080
-HTTP/1.1 200 OK
-Server: nginx/1.19.2
-```
+  $ curl --head http://192.168.10.11:8080
+  HTTP/1.1 200 OK
+  Server: nginx/1.19.2
+  ```
 
-- Configuring **iptables nat** rules
+  - Configuring **iptables nat** rules
 
-```
-$ iptables \
+  ```
+  $ iptables \
          -t nat \
          -A PREROUTING \
          -j DNAT \
          --dport 8080 \
          --to-destination 80
-```
+  ```
 
-```
-$ iptables \
+  ```
+  $ iptables \
       -t nat \
       -A DOCKER \
       -j DNAT \
       --dport 8080 \
       --to-destination 172.18.0.6:80
-```
+  ```
 
 ## List the Iptables rules
 
