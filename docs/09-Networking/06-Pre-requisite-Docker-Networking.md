@@ -64,55 +64,51 @@
   
   - The container we created is Nginx, so it's a web application serving webpage on port 80. Since our container is within a private network inside the host, `only other containers in the same network, or the host itself, can access this webpage`. This means that only other containers in the same network or the host itself can access the services provided by the container.
   - However, if one tries to access the same webpage from outside the host, it will not be accessible.
+    ![DN](../../images/dn8.png)
   - To allow external users or systems to access the applications hosted on containers, Docker provides the option of `port publishing` or `port mapping`.
   - Port mapping enables the mapping of a port on the host to a port on the container, effectively allowing traffic from external sources to reach the services running within the container.
   - With port mapping, users can specify which port on the host should be mapped to which port on the container, enabling external access to the services provided by the container.
-    ![DN](../../images/dn8.png)
+    ![DN](../../images/dn9.png)
   - Mapping port 8080 on Docker host to port 80 on the container.
     
     ```
     $ docker run -itd --name nginx -p 8080(host):80(container) nginx
     e7387bbb2e2b6cc1d2096a080445a6b83f2faeb30be74c41741fe7891402f6b6
     ```
-
-
-
 - **Forwarding Traffic:**
   
   - Docker forwards traffic from one port to another using NAT rules.
   - Utilizes IP tables to create NAT rules.
   - Adds rules to Docker chain to change destination port.
   - Docker rule includes the container's IP as well.
-
-
   - Inspect the docker container to view the IPAddress.
-
+  
   ```
   $ docker inspect nginx | grep -w IPAddress
             "IPAddress": "172.18.0.6",
                     "IPAddress": "172.18.0.6",
   ```
-
+  
   - Accessing web page with the `curl` command.
-
+  
   ```
   $ curl --head  http://172.18.0.6:80
   HTTP/1.1 200 OK
   Server: nginx/1.19.2
   ```
-
+  
   - Port Mapping to docker container
-
+  
   ```
   $ docker run -itd --name nginx -p 8080:80 nginx
   e7387bbb2e2b6cc1d2096a080445a6b83f2faeb30be74c41741fe7891402f6b6
   ```
-
+  
   - Inspecting docker container to view the assgined ports.
-
+  
   ```
   $ docker inspect nginx | grep -w -A5 Ports
-
+  
   "Ports": {
                 "80/tcp": [
                     {
@@ -120,21 +116,21 @@
                         "HostPort": "8080"
                     }
   ```
-
+  
   - To view the IP Addr of the host system
-
+  
   ```
   $ ip a
-
+  
   # Accessing nginx page with curl command
-
+  
   $ curl --head http://192.168.10.11:8080
   HTTP/1.1 200 OK
   Server: nginx/1.19.2
   ```
-
+  
   - Configuring **iptables nat** rules
-
+  
   ```
   $ iptables \
          -t nat \
@@ -143,7 +139,7 @@
          --dport 8080 \
          --to-destination 80
   ```
-
+  
   ```
   $ iptables \
       -t nat \
