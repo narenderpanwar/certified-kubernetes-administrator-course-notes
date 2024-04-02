@@ -1,15 +1,14 @@
 # Pre-requisite CoreDNS
 
-  - Take me to [Lecture](https://kodekloud.com/topic/prerequisite-coredns/)
-
-In this section, we will take a look at **CoreDNS**
+- Take me to [Lecture](https://kodekloud.com/topic/prerequisite-coredns/)
+- In this article we will see `how to configure a host as a DNS server`.
+- We are given a server dedicated as the DNS server, and a set of IPs to configure as entries in the server. There are many DNS server solutions out there, in this lecture we will focus on a particular one – `CoreDNS`.
 
 ## Installation of CoreDNS
 
 ```
 $ wget https://github.com/coredns/coredns/releases/download/v1.7.0/coredns_1.7.0_linux_amd64.tgz
 coredns_1.7.0_linux_amd64.tgz
-
 ```
 
 ## Extract tar file
@@ -25,7 +24,6 @@ coredns
 
 ```
 $ ./coredns
-
 ```
 
 ## Configuring the hosts file
@@ -50,19 +48,17 @@ $ cat > Corefile
 . {
 	hosts   /etc/hosts
 }
-
 ```
 
 ## Run the executable file
 
 ```
 $ ./coredns
-
 ```
-
 
 #### References Docs
 
 - https://github.com/kubernetes/dns/blob/master/docs/specification.md
 - https://coredns.io/plugins/kubernetes/
 - https://github.com/coredns/coredns/releases
+
