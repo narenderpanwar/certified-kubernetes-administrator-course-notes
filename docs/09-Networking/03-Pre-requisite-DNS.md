@@ -148,25 +148,24 @@ In this section, we will take a look at **DNS in the Linux**
    - Updates to IP addresses are managed centrally on the DNS server, simplifying maintenance.
 6. **Combining Local and DNS Resolution:**
    
-   - While DNS is the primary method for hostname resolution, local `/etc/hosts` entries can still be utilized for specific cases, such as test servers.
+   - While DNS is the primary method for hostname resolution, local `/etc/hosts` entries can still be utilized for specific cases.
+     *For example* : Say you were to provision a test server for your own needs. You don't think others would need to resolve the server by its name, so it may not be added to the DNS server. In that case, you can add an entry into your host /etc/hosts file to resolve this server. You can now resolve the server. However, no other system will be able to do that. So a system is able to use host name to IP mapping from the /etc/hosts file locally as well as from a remote DNS server.
 7. **Order of Resolution:**
    
+   - The host first looks in the local /etc/hosts file and then looks at the nameserver. So if it finds the entry in the local /etc/hosts file, it uses that. If not, it looks for that host in the DNS server. But that order can be changed.
    - The order of hostname resolution is defined in the `/etc/nsswitch.conf` file.
-   - By default, it first checks the `/etc/hosts` file (`files`) and then queries the DNS server (`dns`).
-8. **Fallback for Unknown Hosts:**
-   
-   - Hosts query both local and DNS sources for hostname resolution.
-   - If a hostname is not found in either source, the resolution fails.
-9. **Fallback DNS Servers:**
+     
+     ![net-10](../../images/dns7.png)
+8. **Fallback DNS Servers:**
    
    - Additional DNS servers, such as public servers like 8.8.8.8, can be added to `/etc/resolv.conf` to resolve external hosts not present in the local DNS.
-10. **Configuring DNS Forwarding:**
+9. **Configuring DNS Forwarding:**
     
     - Internal DNS servers can be configured to forward unresolved queries to external DNS servers, ensuring comprehensive hostname resolution.
-11. **Limitations of External Access:**
+10. **Limitations of External Access:**
     
     - Access to external sites like facebook.com may be restricted, depending on network configurations.
-12. **Conclusion:**
+11. **Conclusion:**
     
     - Hostname resolution involves a combination of local configuration (`/etc/hosts`) and centralized DNS servers.
     - DNS simplifies management and scalability but requires proper configuration for external access.
