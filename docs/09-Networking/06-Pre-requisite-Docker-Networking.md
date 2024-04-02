@@ -33,15 +33,30 @@
      ![DN](../../images/dn2.png)
 - **Understanding Docker's Bridge Network:**
   
-  - Docker creates an internal private network named "Bridge" (shown as Docker0 on the host).
+  - Docker creates an internal private network named "Bridge". To check :
+    
+    ```
+    docker network ls
+    ```
+  - Docker calls the network by the name Bridge, but on the host, the network is created by the name `Docker0`. To check:
+    
+    ```
+    ip link
+    ```
+    
+    ![DN](../../images/dn3.png)
   - Similar technique to namespaces using `IP link add` command with type set to bridge.
-  - The interface Docker0 on the host is assigned IP 172.17.0.1.
+  - Remember, we said that the bridge network is like an interface to the host but a switch to the namespaces or containers within the host. So the interface docker0 on the host is assigned an IP 172.17.0.1.
+    ![DN](../../images/dn4.png)
   - Docker creates a network namespace for each container.
+    ![DN](../../images/dn5.png)
 - **Container Attachment to Bridge Network:**
   
-  - Docker attaches containers to the bridge network via virtual cables with two interfaces.
+  - Docker attaches containers to the bridge network via a virtual cable with two interfaces.
   - One end attached to local bridge Docker0 on the host and another end within the container namespace.
-  - Each container gets an IP address within the network.
+  - Each container/network namespace gets an IP address within the network.
+    
+    ![DN](../../images/dn6.png)
 - **Port Mapping:**
   
   - Example with Nginx container serving webpage on port 80.
@@ -66,39 +81,6 @@
 
 In this section, we will take a look at **Docker Networking**
 
-## None Network
-
-- Running docker container with `none` network
-
-```
-$ docker run --network none nginx
-```
-
-## Host Network
-
-- Running docker container with `host` network
-
-```
-$ docker run --network host nginx
-```
-
-## Bridge Network
-
-- Running docker container with `bridge` network
-
-```
-$ docker run --network bridge nginx
-```
-
-## List the Docker Network
-
-```
-$ docker network ls
-NETWORK ID          NAME                DRIVER              SCOPE
-4974cba36c8e        bridge              bridge              local
-0e7b30a6c996        host                host                local
-a4b19b17d2c5        none                null                local
-```
 
 ## To view the Network Device on the Host
 
