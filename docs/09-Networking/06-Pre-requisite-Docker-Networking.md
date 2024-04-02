@@ -62,11 +62,14 @@
     ![DN](../../images/dn7.png)
 - **Port Mapping:**
   
-  - Example with Nginx container serving webpage on port 80.
-  - Containers within the private network or host can access the webpage.
-  - External users require port publishing or mapping.
-  - Mapping port 8080 on Docker host to port 80 on the container.
-  - Allows access to the application using Docker host's IP and port 8080.
+  - The container we created is Nginx, so it's a web application serving webpage on port 80. Since our container is within a private network inside the host, `only other containers in the same network, or the host itself, can access this webpage`. This means that only other containers in the same network or the host itself can access the services provided by the container.
+  - However, if one tries to access the same webpage from outside the host, it will not be accessible.
+  - To allow external users or systems to access the applications hosted on containers, Docker provides the option of `port publishing` or `port mapping`.
+  - Port mapping enables the mapping of a port on the host to a port on the container, effectively allowing traffic from external sources to reach the services running within the container.
+  - With port mapping, users can specify which port on the host should be mapped to which port on the container, enabling external access to the services provided by the container.
+    ![DN](../../images/dn8.png)
+- Mapping port 8080 on Docker host to port 80 on the container.
+- Allows access to the application using Docker host's IP and port 8080.
 - **Forwarding Traffic:**
   
   - Docker forwards traffic from one port to another using NAT rules.
