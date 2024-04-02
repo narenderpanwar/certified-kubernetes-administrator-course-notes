@@ -36,17 +36,22 @@
 - But how do you make sure the program you create will work currently with these run times? How do you know that container run times like Kubernetes or Rocket will invoke your program correctly? `That's where we need some standards defined`.
 - A standard that defines how a program should look, how container run times will invoke them so that everyone can adhere to a single set of standards and develop solutions that work across run times. That's where container network interface comes in. The CNI is a set of standards that define how programs should be developed to solve networking challenges in a container runtime environments. `The programs are referred to as plugins`. In this case, `bridge` program that we have been referring to is a `plugin for CNI`.
 
-### Benefits of CNI
+---
 
-* **Reduced Redundancy:** Avoids re-implementing networking solutions for each container runtime.
-* **Interoperability:** Enables different runtimes to work with various plugins.
+Docker uses its own CNM (Container Network Model) standard, which is similar to CNI but with differences. This means CNI plugins don't directly integrate with Docker. However, workarounds exist, such as creating a Docker container without any network configuration
 
-### Existing CNI Plugins
+```
+docker run --network=none nginx
+```
 
-* **Bridge:** Default CNI plugin, creates a simple bridge network.
-* **VLAN, IP VLAN, MAC VLAN:** Provides VLAN networking.
-* **Windows:** Supports networking for Windows containers.
-* **IPAM:** Handles IP address management (e.g., Host Local, DHCP).
+and then manually invoking the CNI bridge plugin (like `Kubernetes` does).
+
+```
+bridge add 2e34dcf34 /var/run/netns/2e34dcf34
+```
+
+![CNI](../../images/cni3.png)
+---
 
 ### Third-Party CNI Plugins
 
@@ -56,32 +61,5 @@
 * VMware NSX
 * Calico
 * Infoblox
-
-### Docker and CNI
-
-Docker uses its own CNM (Container Network Model) standard, which is similar to CNI but with differences. This means CNI plugins don't directly integrate with Docker. However, workarounds exist, such as creating a Docker container without network configuration and then manually invoking the CNI bridge plugin (like Kubernetes does).
-
-# Pre-requisite CNI
-
-- Take me to [Lecture](https://kodekloud.com/topic/prerequsite-cni/)
-
-In this section, we will take a look at **Pre-requisite Container Network Interface(CNI)**
-
-![net-7](../../images/net7.PNG)
-
-## Third Party Network Plugin Providers
-
-- [Weave](https://www.weave.works/docs/net/latest/kubernetes/kube-addon/#-installation)
-- [Calico](https://docs.projectcalico.org/getting-started/kubernetes/quickstart)
-- [Flannel](https://github.com/coreos/flannel/blob/master/Documentation/kubernetes.md)
-- [Cilium](https://github.com/cilium/cilium)
-
-## To view the CNI Network Plugins
-
-- CNI comes with the set of supported network plugins.
-
-```
-$ ls /opt/cni/bin/
-bridge  dhcp  flannel  host-device  host-local  ipvlan  loopback  macvlan  portmap  ptp  sample  tuning  vlan
-```
+  
 
