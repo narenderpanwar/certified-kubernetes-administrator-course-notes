@@ -57,6 +57,9 @@
   - Each container/network namespace gets an IP address within the network.
     
     ![DN](../../images/dn6.png)
+  - The same procedure is followed every time a new container is created. `Docker creates a namespace`, `creates a pair of interfaces`, `attaches one end to the container and another end to the bridge network`. The interface pairs can be identified using their numbers. Odd and even form a pair. 9 and 10 are one pair. 7 and 8 are another. 11 and 12 are one pair. The containers are all part of the network now. They can all communicate with each other.
+    
+    ![DN](../../images/dn7.png)
 - **Port Mapping:**
   
   - Example with Nginx container serving webpage on port 80.
@@ -80,7 +83,6 @@
 - Take me to [Lecture](https://kodekloud.com/topic/prerequsite-docker-networking/)
 
 In this section, we will take a look at **Docker Networking**
-
 
 ## To view the Network Device on the Host
 
