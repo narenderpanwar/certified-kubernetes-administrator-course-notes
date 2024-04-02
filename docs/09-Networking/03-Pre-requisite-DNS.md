@@ -1,46 +1,5 @@
-## DNS
-
-- Every host has a DNS resolution configuration file at `/etc/resolv.conf`.
-
-```
-$ cat /etc/resolv.conf
-nameserver 127.0.0.53
-options edns0
-```
-
-- To change the order of dns resolution, we need to do changes into the `/etc/nsswitch.conf` file.
-
-```
-$ cat /etc/nsswitch.conf
-
-hosts:          files dns
-networks:       files
-```
-
-- If it fails in some conditions.
-
-```
-$ ping wwww.github.com
-ping: www.github.com: Temporary failure in name resolution
-```
-
-- Adding well known public nameserver in the `/etc/resolv.conf` file.
-
-```
-$ cat /etc/resolv.conf
-nameserver   127.0.0.53
-nameserver   8.8.8.8
-options edns0
-```
-
-```
-$ ping www.github.com
-PING github.com (140.82.121.3) 56(84) bytes of data.
-64 bytes from 140.82.121.3 (140.82.121.3): icmp_seq=1 ttl=57 time=7.07 ms
-64 bytes from 140.82.121.3 (140.82.121.3): icmp_seq=2 ttl=57 time=5.42 ms
-```
-
 ## Domain Names
+
 
 ![net-8](../../images/net8.PNG)
 
@@ -153,25 +112,62 @@ www.google.com.         63      IN      A       216.58.206.4
    
    - You can have multiple public nameservers like this configured on your host, but then you'll have to configure that on all your hosts in the network. In that case, `you can configure the DNS server itself to forward any unknown host names to the public name server on the internet.`
      ![net-10](../../images/dns9.png)
+     
+     ```
+     Forward All to 8.8.8.8 as an entry in DNS Server
+     ```
 
-    ```
-    Forward All to 8.8.8.8
-    ```
 
+## Domain Names
 
-10. **Limitations of External Access:**
+![net-8](../../images/net8.PNG)
+
+## Search Domain
+
+![net-9](../../images/net9.PNG)
+
+## Record Types
+
+![net-10](../../images/net10.PNG)
+
+## Networking Tools
+
+- Useful networking tools to test dns name resolution.
+
+#### nslookup
 
 ```
-- Access to external sites like facebook.com may be restricted, depending on network configurations.
+$ nslookup www.google.com
+Server:         127.0.0.53
+Address:        127.0.0.53#53
+
+Non-authoritative answer:
+Name:   www.google.com
+Address: 172.217.18.4
+Name:   www.google.com
 ```
 
-11. **Conclusion:**
-    
-    - Hostname resolution involves a combination of local configuration (`/etc/hosts`) and centralized DNS servers.
-    - DNS simplifies management and scalability but requires proper configuration for external access.
-    - Local configurations can be used for specific cases not covered by DNS.
+#### dig
 
 ```
+$ dig www.google.com
 
+; <<>> DiG 9.11.3-1 ...
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 8738
+;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 65494
+;; QUESTION SECTION:
+;www.google.com.                        IN      A
+
+;; ANSWER SECTION:
+www.google.com.         63      IN      A       216.58.206.4
+
+;; Query time: 6 msec
+;; SERVER: 127.0.0.53#53(127.0.0.53)
 ```
+
+
 
