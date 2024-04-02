@@ -40,8 +40,7 @@
 - **Container Attachment to Bridge Network:**
   
   - Docker attaches containers to the bridge network via virtual cables with two interfaces.
-  - One end attached to local bridge Docker0 on the host.
-  - Another end within the container namespace.
+  - One end attached to local bridge Docker0 on the host and another end within the container namespace.
   - Each container gets an IP address within the network.
 - **Port Mapping:**
   
