@@ -1,6 +1,69 @@
+# Networking in Docker
+
+- **Introduction to Docker Networking:**
+  
+  - Docker allows various networking options for containers.
+  - This lecture focuses on basic networking options and relates them to networking namespaces.
+- **Single Docker Host Setup:**
+  
+  - A Docker host is a server with Docker installed.
+  - It has an internet interface at port 80 connecting to the local network with IP address 192.168.1.10.
+- **Networking Options:**
+  
+  1. **None Network:**
+     
+     - Container isn't attached to any network.
+     - No connectivity with the outside world or between containers.
+     
+     ![DN](../../images/dn.png)
+  2. **Host Network:**
+     
+     - Container shares host network.
+     - No network isolation between host and container.
+     - Applications in containers are directly available on host ports.
+     - Can't run multiple containers listening on the same port simultaneously.
+     
+     ![DN](../../images/dn1.png)
+  3. **Bridge Network:**
+     
+     - Creates an internal private network.
+     - Default address: 172.17.0.0.
+     - Each device gets a unique internal private network address.
+     
+     ![DN](../../images/dn2.png)
+- **Understanding Docker's Bridge Network:**
+  
+  - Docker creates an internal private network named "Bridge" (shown as Docker0 on the host).
+  - Similar technique to namespaces using `IP link add` command with type set to bridge.
+  - The interface Docker0 on the host is assigned IP 172.17.0.1.
+  - Docker creates a network namespace for each container.
+- **Container Attachment to Bridge Network:**
+  
+  - Docker attaches containers to the bridge network via virtual cables with two interfaces.
+  - One end attached to local bridge Docker0 on the host.
+  - Another end within the container namespace.
+  - Each container gets an IP address within the network.
+- **Port Mapping:**
+  
+  - Example with Nginx container serving webpage on port 80.
+  - Containers within the private network or host can access the webpage.
+  - External users require port publishing or mapping.
+  - Mapping port 8080 on Docker host to port 80 on the container.
+  - Allows access to the application using Docker host's IP and port 8080.
+- **Forwarding Traffic:**
+  
+  - Docker forwards traffic from one port to another using NAT rules.
+  - Utilizes IP tables to create NAT rules.
+  - Adds rules to Docker chain to change destination port.
+  - Docker rule includes the container's IP as well.
+- **Conclusion:**
+  
+  - Docker provides various networking options including none, host, and bridge networks.
+  - Understanding Docker networking is crucial for managing containerized applications effectively.
+
 # Pre-requisite Docker Networking
 
-  - Take me to [Lecture](https://kodekloud.com/topic/prerequsite-docker-networking/)
+- Take me to [Lecture](https://kodekloud.com/topic/prerequsite-docker-networking/)
 
 In this section, we will take a look at **Docker Networking**
 
@@ -36,10 +99,9 @@ NETWORK ID          NAME                DRIVER              SCOPE
 4974cba36c8e        bridge              bridge              local
 0e7b30a6c996        host                host                local
 a4b19b17d2c5        none                null                local
-
 ```
 
-## To view the Network Device on the Host  
+## To view the Network Device on the Host
 
 ```
 $ ip link
@@ -154,8 +216,8 @@ $ docker inspect nginx | grep -w -A5 Ports
                         "HostIp": "0.0.0.0",
                         "HostPort": "8080"
                     }
-
 ```
+
 - To view the IP Addr of the host system
 
 ```
@@ -194,11 +256,9 @@ $ iptables \
 $ iptables -nvL -t nat
 ```
 
-
-
-
 #### References docs
 
 - https://docs.docker.com/network/
 - https://linux.die.net/man/8/iptables
 - https://linux.die.net/man/8/ip
+
