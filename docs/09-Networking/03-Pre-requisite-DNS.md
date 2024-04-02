@@ -95,21 +95,6 @@ www.google.com.         63      IN      A       216.58.206.4
 
 - Take me to [Lecture](https://kodekloud.com/topic/prerequsite-dns/)
 
-In this section, we will take a look at **DNS in the Linux**
-
-## Name Resolution
-
-- With help of the `ping` command. We can check the reachability of the IP Address on the Network.
-  
-  ```
-  $ ping 172.17.0.64
-  PING 172.17.0.64 (172.17.0.64) 56(84) bytes of data.
-  64 bytes from 172.17.0.64: icmp_seq=1 ttl=64 time=0.384 ms
-  64 bytes from 172.17.0.64: icmp_seq=2 ttl=64 time=0.415 ms
-  ```
-
-# DNS
-
 1. **Setting up Hostnames and IP Address Mapping:**
    
    - Two computers, A and B, have been assigned IP addresses 192.168.1.10 and 192.168.1.11 respectively. You are able to ping other computer using it's IP address.
@@ -164,16 +149,29 @@ In this section, we will take a look at **DNS in the Linux**
      ![net-10](../../images/dns8.png)
    - We can add another entry into our /etc/resolv.conf file to point to a nameserver that knows Facebook.
      *For example*: Google's public DNS Server 8.8.8.8 is a common well-known public nameserver available on the internet hosted by Google that knows about all websites on the internet.
-     
 9. **Configuring DNS Forwarding:**
    
-   - Internal DNS servers can be configured to forward unresolved queries to external DNS servers, ensuring comprehensive hostname resolution.
+   - You can have multiple public nameservers like this configured on your host, but then you'll have to configure that on all your hosts in the network. In that case, `you can configure the DNS server itself to forward any unknown host names to the public name server on the internet.`
+     ![net-10](../../images/dns9.png)
+
+    ```
+    Forward All to 8.8.8.8
+    ```
+
+
 10. **Limitations of External Access:**
-    
-    - Access to external sites like facebook.com may be restricted, depending on network configurations.
+
+```
+- Access to external sites like facebook.com may be restricted, depending on network configurations.
+```
+
 11. **Conclusion:**
     
     - Hostname resolution involves a combination of local configuration (`/etc/hosts`) and centralized DNS servers.
     - DNS simplifies management and scalability but requires proper configuration for external access.
     - Local configurations can be used for specific cases not covered by DNS.
+
+```
+
+```
 
