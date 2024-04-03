@@ -40,11 +40,17 @@
   
   ![SN](../../images/sn1.png)
 
-
 ### Service IP Allocation
 
 * The Kubernetes API server has a configurable service cluster IP range option (default: 10.0.0.0/24).
 * This range is separate from the pod network CIDR range to prevent IP address conflicts.
+* To check the Service Cluster IP Range:
+
+  ```
+  $ ps -aux | grep kube-apiserver
+  --secure-port=6443 --service-account-key-file=/etc/kubernetes/pki/sa.pub --
+  service-cluster-ip-range=10.96.0.0/12
+  ```
 
 ### Viewing iptables Rules
 
