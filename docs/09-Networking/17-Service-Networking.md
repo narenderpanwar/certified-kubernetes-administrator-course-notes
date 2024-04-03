@@ -4,7 +4,7 @@
 
 * We previously explored pod networking and learnt how bridge networks get created on each node.
 * Pods are allocated a namespace with attached interfaces.
-* Pods receive IP addresses from a subnet assigned to their respective nodes.
+* `Pods receive IP addresses from a subnet assigned to their respective nodes`.
 * Routes and otehr overlay techniques enable pods on various nodes to communicate, forming a large virtual network.
 
 ### Services vs. Pods for Communication
@@ -37,21 +37,9 @@
   ![SN](../../images/sn.png)
 - Saying, "Any traffic coming to this IP, the IP of the service, should go to the IP of the pod." Now, whenever a pod tries to reach the IP of the service, it is forwarded to the pod's IP address, which is accessible from any node in the cluster. Now, remember, it's not just the IP, it's an IP and port combination.
 - Whenever services are created or deleted, the kube-proxy component creates or deletes these rules. So how are these rules created? kube-proxy supports different ways, such as userspace where kube-proxy listens on a port for each service and proxy's connections to the pods by creating IPVS rules. Or the third and the default option, and the one familiar to us is using iptables. The proxy mode can be set using the proxy mode option, while configuring the kube-proxy service. If this is not set, it defaults to iptables.
-
+  
   ![SN](../../images/sn1.png)
 
-1. **Service Creation:**
-   * When a service object is created, it's allocated an IP address from a predefined range (e.g., 10.103.132.104).
-2. **kube-proxy on Nodes:**
-   * Each node executes kube-proxy, which monitors the Kubernetes API server for service changes.
-   * kube-proxy establishes forwarding rules on each node for the service.
-   * These rules specify that any traffic directed to the service IP should be forwarded to the pod's IP.
-3. **Pods Accessing Services:**
-   * A pod attempting to reach the service IP is forwarded to the pod's IP (accessible from any node).
-   * This forwarding involves an IP and port combination.
-4. **kube-proxy Rules Management:**
-   * kube-proxy dynamically creates or removes rules whenever services are created or deleted.
-   * It supports various methods, including userspace or iptables (default).
 
 ### Service IP Allocation
 
@@ -178,6 +166,4 @@ $ cat /var/log/kube-proxy.log
 #### References Docs
 
 - https://kubernetes.io/docs/concepts/services-networking/service/
-  
- 
 
