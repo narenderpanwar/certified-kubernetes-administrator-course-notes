@@ -5,12 +5,12 @@
 - Previously, container solutions like Docker, Rocket, and Mesos each had their own way of configuring container networking.
   This involved:
 
-* Network Namespaces: Creating isolated network environments.
-* Bridge Networks: Connecting namespaces through a bridge.
-* Virtual Interfaces: Creating virtual cables with virtual interfaces on either end.
-* Attaching Interfaces: Attaching interfaces to namespaces and the bridge.
-* IP Assignment: Assigning IP addresses to interfaces and bringing them up.
-* NAT/IP Masquerade: Enabling external communication.
+  * Network Namespaces: Creating isolated network environments.
+  * Bridge Networks: Connecting namespaces through a bridge.
+  * Virtual Interfaces: Creating virtual cables with virtual interfaces on either end.
+  * Attaching Interfaces: Attaching interfaces to namespaces and the bridge.
+  * IP Assignment: Assigning IP addresses to interfaces and bringing them up.
+  * NAT/IP Masquerade: Enabling external communication.
   
   ![CNI](../../images/cni.png)
 
@@ -61,5 +61,4 @@ bridge add 2e34dcf34 /var/run/netns/2e34dcf34
 * VMware NSX
 * Calico
 * Infoblox
-  
 
