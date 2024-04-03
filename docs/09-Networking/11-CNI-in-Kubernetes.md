@@ -10,9 +10,9 @@ In this section, we will take a look at **Container Networking Interface (CNI) i
 
 - Check the status of the Kubelet Service
 
-```
-$ systemctl status kubelet.service
-```
+  ```
+  $ systemctl status kubelet.service
+  ```
 
 ## View Kubelet Options
 
@@ -36,6 +36,15 @@ $ ps -aux | grep kubelet
   ls /etc/cni/net.d
   ```
 
+## Check the Binary executable file that will be run by kubelet after a container and its associated namespace are created
+
+```
+cat /etc/cni/net.d/10-flannel.conflist
+{
+  "type":"flannel"
+}
+```
+
 ## Format of Configuration File
 
 ![net-2](../../images/net2.PNG)
@@ -44,4 +53,3 @@ $ ps -aux | grep kubelet
 
 - https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet/
 - https://kubernetes.io/docs/concepts/extend-kubernetes/compute-storage-net/network-plugins/
-
