@@ -15,7 +15,10 @@
   
   ![DNS](../../images/kdns3.png)
 - When CoreDNS is deployed within a Kubernetes cluster, it automatically creates a service to make itself available to other components within the cluster. By default, this service is named kube-dns.
-- The IP address of the KubeDNS service is configured as the nameserver on each pods. This configuration is handled automatically by Kubernetes, eliminating the need for manual configuration.
+- The IP address of the kube-dns service is configured as the nameserver on each pods. This configuration is handled automatically by Kubernetes, eliminating the need for manual configuration.
+  
+  ![DNS](../../images/cdns2.png)
+  
 - Once the pods are configured with the right nameserver, you can now resolve other pod and services. You can access the web service using just web service or web-service.default or web-service.default.SVC or web-service.default.svc.cluster.local.
 
 ## Kubernetes Component Responsible for DNS Configuration on Pods
