@@ -47,38 +47,22 @@
 - To refer to it from the `default namespace` you would have to say `web-service.apps`. The last name of the service, is now the name of the namespace. So here, web-service is the name of the service, and Apps, is the name of the namespace. For each namespace the DNS server creates a Sub domain.
 - All the services are grouped together into another Sub Domain called `svc`. So you can reach your application, with the name webservice.apps.svc.
 - Finally, all the services and pods are grouped together, into a `root domain` for the cluster, which is set to `cluster.local` by default. So you can access the service using the URL `webservice.apps.svc.cluster.local` and that's the `fully qualified domain name for the service`.
-
+  
   ![DNS](../../images/kdns4.png)
 
 
-## Namespace and DNS Subdomains:
-
-- Each namespace corresponds to a subdomain created by the DNS server.
-- Services and pods within a namespace are grouped together under its subdomain.
-- All services are further grouped under the "SVC" subdomain.
-- Accessing applications within a namespace involves using the format `<service_name>.<namespace>.svc`.
-- The cluster's overall routing domain is set to `cluster.local`, allowing access to services via the fully qualified domain name (FQDN) `<service_name>.<namespace>.svc.cluster.local`.
-
 ## Pod DNS Resolution:
 
-- By default, DNS records for pods are not created but can be enabled explicitly.
-- Kubernetes generates a unique name for each pod by replacing dots in its IP address with dashes.
-- Pod records include namespace, type (set to "pod"), and the routing domain (`cluster.local`).
+- But what about pods?
+- Records for pods are not created by default, but we can enable that explicitly. We will see that in the next lecture. Once enabled records are created for pods as well. It does not use the pod name though. For each pod, Kubernetes generates a name by replacing the dots in the IP address with dashes. The name space remains the same and type is set to pod. The route domain is always `cluster.local`
 
-## Conclusion:
+  ![DNS](../../images/kdns5.png)
 
-- Understanding DNS resolution mechanisms within a Kubernetes cluster is vital for effective communication between pods and services.
-- Proper namespace organization and DNS configuration ensure seamless communication and access within the cluster.
-
-# DNS in Kubernetes
-
-- Take me to [Lecture](https://kodekloud.com/topic/dns-in-kubernetes/)
-
-In this section, we will take a look at **DNS in the Kubernetes Cluster**
+    
 
 ## Pod DNS Record
 
-- The following DNS resolution:
+The following DNS resolution:
 
 ```
 <POD-IP-ADDRESS>.<namespace-name>.pod.cluster.local
