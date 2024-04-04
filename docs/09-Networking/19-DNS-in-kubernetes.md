@@ -35,10 +35,10 @@
 - Let's start with just two pods and a service. I have a test pod on the left with the IP set to 10.2 44.105 and I have a web pod on the right with the IP set to 10.244.2.5. Looking at their I.P's, you can guess that they're probably hosted on two different nodes, but that doesn't really matter. As far as DNS is concerned, we assume that all pods and services can reach each other using their IP addresses. To make the web server accessible to the test pod, we create a service. We name it web service. The service gets an IP 10 10737.188.
   ![DNS](../../images/kdns1.png)
 - Whenever a service is created, the Kubernetes DNS service, creates a record for the service. It maps the service name to the IP address, so, within the cluster, any pod can now reach this service using its service name.
-  
   ![DNS](../../images/kdns3.png)
 - Remember we talked about namespaces earlier, that everyone `within the namespace` address each other just with their `first names`, and to address anyone in `another namespace`, you use their `full names`.
   
+  ![DNS](../../images/kdns7.png)
   ![DNS](../../images/kdns2.png)
 - In this case, since the test pod and the web pod, and its associated service are all in the same namespace, the default name space, you were able to simply reach the web service from the test pod using just the service name web-service
 
