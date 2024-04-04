@@ -1,9 +1,44 @@
+## CoreDNS Setup in Kubernetes:
+
+- Kubernetes implements DNS by deploying a DNS server within the cluster.
+- Before version 1.12, the DNS server was known as kube-dns. From version 1.12 onwards, CoreDNS is recommended.
+- CoreDNS is deployed as a pod in the `kube-system` namespace as part of a replica set for redundancy.
+- It runs the CoreDNS executable, requiring a configuration file named `Corefile` located at `/etc/coredns`.
+- Configuration includes various plugins such as error handling, health reporting, metrics monitoring, and caching.
+- The crucial plugin for Kubernetes integration is the kubernetes plugin, setting the top-level domain name as `cluster.local`.
+
+  ![CDNS](../../images/coredns.png)
+
+- The `pods` option within the Kubernetes plugin handles creating records for pods in the cluster.
+- DNS queries not resolved internally are forwarded to the nameserver specified in the CoreDNS pod's `/etc/resolv.conf`, typically set to the Kubernetes node's nameserver.
+- The `Corefile` is passed to the pod as a config map object, allowing for configuration modifications via editing the config map object.
+- CoreDNS watches the Kubernetes cluster for new pods or services and adds records for them in its database upon creation.
+
+## DNS Configuration for Pods:
+
+- Pods automatically point to the CoreDNS server for DNS resolution.
+- Kubernetes automatically configures DNS settings on pods during creation.
+- The kubelet is responsible for configuring DNS on pods.
+- The kubelet's config file contains the DNS server's IP address and domain.
+- With the correct nameserver configured, pods can resolve other pods and services within the cluster.
+
+## Accessing Services via DNS:
+
+- Services within the cluster are accessible using various DNS names.
+- A service named `KubeDNS` is created alongside the CoreDNS deployment, with its IP address configured as the nameserver for pods.
+- DNS configurations on pods are automatically managed by Kubernetes.
+- Pods can access services using various DNS names, including the fully qualified domain name (`FQDN`) and abbreviated forms.
+- The `/etc/resolv.conf` file on pods includes search entries for different DNS names, allowing for flexible service access.
+- However, accessing pods requires specifying the FQDN.
+
+
+  
+
 # CoreDNS in Kubernetes
 
-  - Take me to [Lecture](https://kodekloud.com/topic/coredns-in-kubernetes/)
+- Take me to [Lecture](https://kodekloud.com/topic/coredns-in-kubernetes/)
 
 In this section, we will take a look at **CoreDNS in the Kubernetes**
-
 
 ## To view the Pod
 
@@ -55,7 +90,7 @@ Corefile:
 }
 ```
 
-## To view the Service 
+## To view the Service
 
 ```
 $ kubectl get service -n kube-system
@@ -63,14 +98,13 @@ NAME       TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)                  AGE
 kube-dns   ClusterIP   10.96.0.10   <none>        53/UDP,53/TCP,9153/TCP   62m
 ```
 
-## To view Configuration into the kubelet 
+## To view Configuration into the kubelet
 
 ```
 $ cat /var/lib/kubelet/config.yaml | grep -A2  clusterDNS
 clusterDNS:
 - 10.96.0.10
 clusterDomain: cluster.local
-
 ```
 
 ## To view the fully qualified domain name
@@ -101,7 +135,7 @@ options ndots:5
 pod "test-pod" deleted
 ```
 
-## Resolve the Pod 
+## Resolve the Pod
 
 ```
 $ kubectl get pods -o wide
@@ -114,7 +148,7 @@ Server:    10.96.0.10
 Address 1: 10.96.0.10 kube-dns.kube-system.svc.cluster.local
 
 Name:      10-244-1-4.default.pod.cluster.local
-Address 1: 10.244.1.4 
+Address 1: 10.244.1.4
 ```
 
 ## Resolve the Service
@@ -131,11 +165,10 @@ Address 1: 10.96.0.10 kube-dns.kube-system.svc.cluster.local
 
 Name:      web-service.default.svc.cluster.local
 Address 1: 10.106.112.101 web-service.default.svc.cluster.local
-
 ```
-
 
 #### References Docs
 
 - https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/#services
 - https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/#pods
+
