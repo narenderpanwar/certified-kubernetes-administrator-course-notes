@@ -6,9 +6,8 @@
 - It runs the CoreDNS executable, requiring a configuration file named `Corefile` located at `/etc/coredns`.
 - Configuration includes various plugins such as error handling, health reporting, metrics monitoring, and caching.
 - The crucial plugin for Kubernetes integration is the kubernetes plugin, setting the top-level domain name as `cluster.local`.
-
+  
   ![CDNS](../../images/coredns.png)
-
 - The `pods` option within the Kubernetes plugin handles creating records for pods in the cluster.
 - DNS queries not resolved internally are forwarded to the nameserver specified in the CoreDNS pod's `/etc/resolv.conf`, typically set to the Kubernetes node's nameserver.
 - The `Corefile` is passed to the pod as a config map object, allowing for configuration modifications via editing the config map object.
@@ -25,14 +24,11 @@
 ## Accessing Services via DNS:
 
 - Services within the cluster are accessible using various DNS names.
-- A service named `KubeDNS` is created alongside the CoreDNS deployment, with its IP address configured as the nameserver for pods.
+- A service named `kube-dns` is created alongside the CoreDNS deployment, with its IP address configured as the nameserver for pods.
 - DNS configurations on pods are automatically managed by Kubernetes.
 - Pods can access services using various DNS names, including the fully qualified domain name (`FQDN`) and abbreviated forms.
 - The `/etc/resolv.conf` file on pods includes search entries for different DNS names, allowing for flexible service access.
 - However, accessing pods requires specifying the FQDN.
-
-
-  
 
 # CoreDNS in Kubernetes
 
