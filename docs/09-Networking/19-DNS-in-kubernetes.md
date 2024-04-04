@@ -53,11 +53,12 @@
 ## Pod DNS Resolution:
 
 - But what about pods?
-- Records for pods are not created by default, but we can enable that explicitly. We will see that in the next lecture. Once enabled records are created for pods as well. It does not use the pod name though. For each pod, Kubernetes generates a name by replacing the dots in the IP address with dashes. The name space remains the same and type is set to pod. The route domain is always `cluster.local`
+- `Records for pods are not created by default, but we can enable that explicitly`. We will see that in the next lecture.
+- Once enabled records are created for pods as well. It does not use the pod name though. For each pod, Kubernetes generates a name by replacing the dots in the IP address with dashes. The namespace remains the same and type is set to pod. The root domain is always `cluster.local`
   
   ![DNS](../../images/kdns5.png)
 - Similarly, the test pod in the default namespace gets a record in the DNS server with its IP converted to a `dash` hostname, 10-244-1-5 and namespace set to default. Type is pod and the route is cluster.local This results to the IP address of the pod.
-
+  
   ![DNS](../../images/kdns6.png)
 
 ## Pod DNS Record
