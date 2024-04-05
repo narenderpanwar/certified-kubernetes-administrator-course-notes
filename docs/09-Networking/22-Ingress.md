@@ -59,6 +59,7 @@
   ![ingress](../../images/ingress11.png)
 - I would use a reverse proxy or a load balancing solution like NGINX or HA Proxy or Traefik.
 - Then, I would deploy them on a Kubernetes cluster and configure them to route traffic to other services. The configuration involves defining URL routes, configuring SSL certificates, etc. Ingress is implemented by Kubernetes in kind of the same way.
+- The solution you deploy is called as an `Ingress controller`, and the set of rules you configure are called as `Ingress resources`.
 
 In this section, we will take a look at **Ingress**
 
