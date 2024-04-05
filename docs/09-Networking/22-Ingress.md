@@ -53,6 +53,12 @@
   ![ingress](../../images/ingress9.png)
 - Simply think of ingress as a layer seven load balancer built in to the Kubernetes cluster that can be configured using native Kubernetes primitives just like any other object in Kubernetes. Now remember, `even with ingress, you still need to expose it to make it accessible outside the cluster`. So you still have to either publish it as a node port or with a cloud native load balancer, but that is just a one-time configuration.
   ![ingress](../../images/ingress10.png)
+- Going forward, you're going to perform all your load balancing authentication, SSL and URL-based routing configurations on the ingress controller.
+- So how does it work? What is it? Where is it? How can you see it? How can you configure it? How does it load balance? How does it implement SSL?
+- `Without ingress, how would you do all of this?`
+  ![ingress](../../images/ingress11.png)
+- I would use a reverse proxy or a load balancing solution like NGINX or HA Proxy or Traefik.
+- Then, I would deploy them on a Kubernetes cluster and configure them to route traffic to other services. The configuration involves defining URL routes, configuring SSL certificates, etc. Ingress is implemented by Kubernetes in kind of the same way.
 
 In this section, we will take a look at **Ingress**
 
