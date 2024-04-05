@@ -1,55 +1,3 @@
-## Domain Names
-
-
-![net-8](../../images/net8.PNG)
-
-## Search Domain
-
-![net-9](../../images/net9.PNG)
-
-## Record Types
-
-![net-10](../../images/net10.PNG)
-
-## Networking Tools
-
-- Useful networking tools to test dns name resolution.
-
-#### nslookup
-
-```
-$ nslookup www.google.com
-Server:         127.0.0.53
-Address:        127.0.0.53#53
-
-Non-authoritative answer:
-Name:   www.google.com
-Address: 172.217.18.4
-Name:   www.google.com
-```
-
-#### dig
-
-```
-$ dig www.google.com
-
-; <<>> DiG 9.11.3-1 ...
-;; Got answer:
-;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 8738
-;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1
-
-;; OPT PSEUDOSECTION:
-; EDNS: version: 0, flags:; udp: 65494
-;; QUESTION SECTION:
-;www.google.com.                        IN      A
-
-;; ANSWER SECTION:
-www.google.com.         63      IN      A       216.58.206.4
-
-;; Query time: 6 msec
-;; SERVER: 127.0.0.53#53(127.0.0.53)
-```
-
 # Pre-requisite DNS
 
 - Take me to [Lecture](https://kodekloud.com/topic/prerequsite-dns/)
@@ -117,7 +65,6 @@ www.google.com.         63      IN      A       216.58.206.4
      Forward All to 8.8.8.8 as an entry in DNS Server
      ```
 
-
 ## Domain Names
 
 ![net-8](../../images/net8.PNG)
@@ -168,6 +115,4 @@ www.google.com.         63      IN      A       216.58.206.4
 ;; Query time: 6 msec
 ;; SERVER: 127.0.0.53#53(127.0.0.53)
 ```
-
-
 
