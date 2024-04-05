@@ -45,9 +45,14 @@
   - You don't want your developers to implement it in their application as they would do it in different ways. You want it to be configured in one place with minimal maintenance. Now, that's a lot of different configuration and all of this becomes difficult to manage when your application scales. It requires involving different individuals in different teams.
   - You need to configure your firewall rules for each new service, and it's expensive as well as for each service, a new cloud native load balancer needs to be provisioned.
   - Wouldn't it be nice if you could manage all of that within the Kubernetes cluster and have all that configuration as just another Kubernetes definition file that lives along with the rest of your application deployment files?
-    ![ingress](../../images/ingress7.png)
   
   ---
+- That's where ingress comes in.
+- Ingress helps your users access your application using a single externally accessible URL that you can configure to route to different services within your cluster based on the URL path. At the same time, implement SSL security as well.
+  
+  ![ingress](../../images/ingress9.png)
+- Simply think of ingress as a layer seven load balancer built in to the Kubernetes cluster that can be configured using native Kubernetes primitives just like any other object in Kubernetes. Now remember, `even with ingress, you still need to expose it to make it accessible outside the cluster`. So you still have to either publish it as a node port or with a cloud native load balancer, but that is just a one-time configuration.
+  ![ingress](../../images/ingress10.png)
 
 In this section, we will take a look at **Ingress**
 
