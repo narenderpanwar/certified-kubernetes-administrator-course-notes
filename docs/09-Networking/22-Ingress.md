@@ -10,6 +10,43 @@
   
   ![ingress](../../images/ingress1.png)
 - Your users can now access your application using the URL myonlinestore.com and port 38080.
+- Now, you don't want your users to have to remember a port number either.
+- However, service node ports can only allocate high numbered ports, which are greater than 30,000.
+- So you then bring in an additional layer between the DNS server and your cluster, like a `proxy server that proxies requests on port 80 to port 38080 on your nodes`.
+  ![ingress](../../images/ingress2.png)
+- You then point your DNS to this server and users can now access your application by simply visiting myonlinestore.com without having to type any port.
+- __Now this is if your application is hosted on-prem in your data center. Let's take a step back and see what you could do if you were on a public cloud environment like Google Cloud Platform or AWS.__
+- In that case, instead of creating a service of type node port for your wear application, you could set it to type `LoadBalancer`.
+  
+  ![ingress](../../images/ingress3.png)
+- When you do that, Kubernetes would still do everything that it has to do for a node port, which is to provision a high port for the service. But in addition to that, Kubernetes also sends a request to Google Cloud Platform to provision a network load balancer for the service.
+- On receiving the request, GCP would then automatically deploy a load balancer configured to route traffic to the service ports on all the nodes and return its information to Kubernetes.
+- The load balancer has an external IP that can be provided to users to access the application. In this case, we set the DNS to point to this IP and users access the application using the URL myonlinestore.com.
+  
+  ![ingress](../../images/ingress4.png)
+- __Your company's business grows and you now have new services for your customers. For example, a video streaming service. You want your users to be able to access your new video streaming service by going to myonlinestore.com/watch. You'd like to make your old application accessible at myonlinestore.com/wear.__
+- Your developers developed the new video streaming application as a completely different application as it has nothing to do with the existing one. However, in order to share the same cluster resources, you deploy the new application as a separate deployment within the same cluster.
+- You create a service called video service of type load balancer. Kubernetes provisions port 38282 for this service, and also provisions a network load balancer on the cloud. The new load balancer has a new IP.
+  
+  ![ingress](../../images/ingress5.png)
+- *Remember, you must pay for each of these load balancers and having many such load balancers can inversely affect your cloud bill.*
+- So how do you direct traffic between each of these load balancers based on the URL that the users type in?
+- You need yet another proxy or load balancer that can redirect traffic based on URLs to the different services.
+  
+  ![ingress](../../images/ingress6.png)
+  
+  ---
+  
+  - Every time you introduce a new service, you have to reconfigure the load balancer. And finally, you also need to enable SSL for your applications so your users can access your application using HTTPS.
+    
+    ![ingress](../../images/ingress7.png)
+  - But where do you configure that?
+  - It can be done at different levels, either at the application level itself or at the load balancer or proxy server level. But which one?
+  - You don't want your developers to implement it in their application as they would do it in different ways. You want it to be configured in one place with minimal maintenance. Now, that's a lot of different configuration and all of this becomes difficult to manage when your application scales. It requires involving different individuals in different teams.
+  - You need to configure your firewall rules for each new service, and it's expensive as well as for each service, a new cloud native load balancer needs to be provisioned.
+  - Wouldn't it be nice if you could manage all of that within the Kubernetes cluster and have all that configuration as just another Kubernetes definition file that lives along with the rest of your application deployment files?
+  
+  ---
 
 
 
