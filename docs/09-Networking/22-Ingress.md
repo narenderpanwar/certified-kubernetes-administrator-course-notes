@@ -61,7 +61,7 @@
 - Then, I would deploy them on a Kubernetes cluster and configure them to route traffic to other services. The configuration involves defining URL routes, configuring SSL certificates, etc. Ingress is implemented by Kubernetes in kind of the same way.
 - The solution you deploy is called as an `Ingress controller`, and the set of rules you configure are called as `Ingress resources`.
 
-![ingress](../../images/ingress12.png)
+  ![ingress](../../images/ingress12.png)
 
 - Now remember, a Kubernetes cluster does not come with an ingress controller by default, so you must deploy one.
 - What do you deploy? There are a number of solutions available for ingress, a few of them being G-C-E, which is Google's layer seven HTTP load balancer, NGINX, Contour, HA Proxy, Traefik and Istio. Out of this, GCE and NGINX are currently being supported and maintained by the Kubernetes project, and in this lecture we will use NGINX as an example.
