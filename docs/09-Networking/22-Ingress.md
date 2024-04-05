@@ -75,8 +75,10 @@
   ![ingress](../../images/ic2.png)
 - We then need a service to expose the ingress controller to the external world. So we create a service of type node port with the NGINX ingress label selector to link the service to the deployment.
   ![ingress](../../images/ic3.png)
-- As mentioned before, the ingress controllers have additional intelligence built into them to monitor the Kubernetes cluster for ingress resources and configure the underlying NGINX server when something is changed. But for the ingress controller to do this, it requires a service account with the right set of permissions. For that, we create a service account with the correct roles and role bindings. So to summarize, with a deployment of the NGINX ingress image, a service to expose it, a config map to feed NGINX configuration data, and a service account with the right permissions to access all of these objects, we should be ready with an ingress controller in its simplest form.
-- So to summarize, with a deployment of the NGINX ingress image, a service to expose it, a config map to feed NGINX configuration data and a service account with the right permissions to access all of these objects, we should be ready with an ingress controller in its simplest form.
+- As mentioned before, the ingress controllers have additional intelligence built into them to monitor the Kubernetes cluster for ingress resources and configure the underlying NGINX server when something is changed. But for the ingress controller to do this, it requires a service account with the right set of permissions. For that, we create a service account with the correct roles and role bindings.
+  ![ingress](../../images/ic4.png)
+ 
+- So to summarize, with a deployment of the NGINX ingress image, a service to expose it, a config map to feed NGINX configuration data, and a service account with the right permissions to access all of these objects, we should be ready with an ingress controller in its simplest form.
   
   ![ingress](../../images/ingress13.png)
 
