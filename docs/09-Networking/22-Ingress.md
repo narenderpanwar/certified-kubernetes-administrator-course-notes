@@ -77,7 +77,6 @@
   ![ingress](../../images/ic3.png)
 - As mentioned before, the ingress controllers have additional intelligence built into them to monitor the Kubernetes cluster for ingress resources and configure the underlying NGINX server when something is changed. But for the ingress controller to do this, it requires a service account with the right set of permissions. For that, we create a service account with the correct roles and role bindings.
   ![ingress](../../images/ic4.png)
- 
 - So to summarize, with a deployment of the NGINX ingress image, a service to expose it, a config map to feed NGINX configuration data, and a service account with the right permissions to access all of these objects, we should be ready with an ingress controller in its simplest form.
   
   ![ingress](../../images/ingress13.png)
@@ -183,6 +182,15 @@ $ kubectl get service
 
 ## Ingress Resources
 
+- An Ingress resource is a set of rules and configurations applied on the ingress controller.
+- You can configure rules to say simply forward all incoming traffic to a single application or route traffic to different applications based on the URL.
+- So if a user goes to myonlinestore.com/wear, then route to one of the applications, or if the user visits the watch URL, then route to the video app, etc. Or
+- You could route users based on the domain name itself. For example, if the user visits wear.myonlinestore.com, then route the user to the wear application or else route him to the video app.
+
+  ![ingress](../../images/ing.png)
+
+
+
 ```
 Ingress-wear.yaml
 
@@ -214,6 +222,8 @@ ingress-wear   <none>   *                 80      18s
 ## Ingress Resource - Rules
 
 - 1 Rule and 2 Paths.
+
+![ingress](../../images/1rule2paths.png)
 
 ```
 apiVersion: extensions/v1beta1
@@ -256,6 +266,8 @@ Events:
 ```
 
 - 2 Rules and 1 Path each.
+
+![ingress](../../images/2rules1path.png)
 
 ```
 # Ingress-wear-watch.yaml
