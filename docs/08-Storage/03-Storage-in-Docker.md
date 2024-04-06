@@ -96,11 +96,12 @@ In this section, we will take a look at docker **Storage driver and Filesystem**
   
   $ docker run --mount type=bind,source=/data/mysql,target=/var/lib/mysql mysql
   ```
+  
+  ![class-8](../../images/class8.PNG)
 - So, who is responsible for doing all of these Operations?
 - Maintaining of layered architecture, creating a writeable layer, moving files across layers to enable copy and write etc. It's the **Storage Drivers**.
 - Docker uses storage drivers to enable layered architecture.
   
-  ![class-8](../../images/class8.PNG)
 
 #### Common Storage Drivers
 
