@@ -186,10 +186,8 @@ $ kubectl get service
 - You can configure rules to say simply forward all incoming traffic to a single application or route traffic to different applications based on the URL.
 - So if a user goes to myonlinestore.com/wear, then route to one of the applications, or if the user visits the watch URL, then route to the video app, etc. Or
 - You could route users based on the domain name itself. For example, if the user visits wear.myonlinestore.com, then route the user to the wear application or else route him to the video app.
-
+  
   ![ingress](../../images/ing.png)
-
-
 
 ```
 Ingress-wear.yaml
@@ -292,20 +290,6 @@ spec:
           servicePort: 80
 ```
 
-# Why Ingress Came into Picture?
-
-Ingress controllers were introduced to address certain limitations and drawbacks of using NodePort or other types of services directly in Kubernetes.
-
-Here are some reasons why Ingress came into the picture:
-
-1. **HTTP/HTTPS Load Balancing**: In Kubernetes, NodePort services can expose applications to the internet, but they often lack features for HTTP/HTTPS load balancing and routing. Ingress controllers provide more advanced routing capabilities, allowing you to route traffic based on URL paths, domain names, headers, etc.
-2. **Single Point of Entry**: Ingress controllers allow you to define a single point of entry for multiple services. This is useful for managing multiple applications or microservices within a Kubernetes cluster, providing a more centralized and organized approach to exposing services.
-3. **TLS Termination**: While NodePort services can be secured using TLS, managing SSL certificates and termination can be cumbersome. Ingress controllers provide built-in support for TLS termination, simplifying the management of secure connections to your services.
-4. **Path-Based Routing**: Ingress controllers allow you to route traffic based on URL paths, enabling more granular control over how requests are directed to different services within your cluster. This is particularly useful for applications with multiple endpoints or APIs.
-5. **Dynamic Configuration**: Ingress controllers support dynamic configuration updates, allowing you to modify routing rules and settings without requiring changes to underlying Kubernetes resources. This flexibility makes it easier to adapt to changing requirements and traffic patterns.
-6. **Integration with Kubernetes Ecosystem**: Ingress controllers are integrated with the Kubernetes ecosystem, leveraging native resources such as Ingress objects to define routing rules and configurations. This tight integration simplifies deployment and management within Kubernetes environments.
-
-While NodePort services can be used to expose applications externally, they may not provide the same level of flexibility, scalability, and management features as Ingress controllers. Ingress controllers offer a more sophisticated solution for managing inbound traffic to your Kubernetes cluster, especially in production environments with complex routing requirements.
 
 #### References Docs
 
