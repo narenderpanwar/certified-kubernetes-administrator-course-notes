@@ -63,7 +63,7 @@
   - Suppose we want to create an EBS on AWS, then we mention gp2 in the type field of the parameter. And the last important field is reclaim policy, where we mention whether we want to retain or delete the data. Since storage class creates PVs, we specify the reclaim policy of the PV in the PVC yaml file.
   - Apart from these three, there are also some other fields which we will understand as we encounter them. So, this is how we create storage class, PV, and PVC together, and how the entire flow works within the community.
   - __Storage Classes__:
-
+    
     ```
     apiVersion: storage.k8s.io/v1
         kind: StorageClass
@@ -72,7 +72,21 @@
         provisioner: kubernetes.io/aws-ebs
         parameters:
           type: gp2
+        reclaimPolicy: Retain
     ```
+  
+    Use in PVC:
 
-
+    ```
+    kind: PersistentVolumeClaim
+    apiVersion: v1
+    metadata:
+    name: myclaim
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+          requests:
+            storage: 1Gi
+      storageClassName: fast
+    ```
 
