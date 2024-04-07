@@ -23,7 +23,7 @@
 ### Persistent Volume Claims (PVCs)
 
 - A persistent volume claim (PVC) is a request to use the Persistent Volume (PV) storage submitted by a pod.
-- Once a PVC is created, Kubernetes tries to find a suitable PV that matches the PVC's requirements. This matching process considers factors like `access mode`, `storage class`, and `storage availability`.
+- Once a PVC is created, Kubernetes tries to find a suitable PV that matches the PVC's requirements. This matching process considers factors like `access mode`, `storage size`, and `storage class` etc.
 - If properties not matches or PV is not available for the PVC then it will display the pending state.
   
   ```
@@ -37,7 +37,6 @@
         requests:
           storage: 1Gi
   ```
-
 
 ### PV and PVC Binding
 
