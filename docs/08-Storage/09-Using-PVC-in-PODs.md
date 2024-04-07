@@ -1,10 +1,11 @@
 # Using PVC in PODs
 
-  - Take me the [Lecture](https://kodekloud.com/topic/using-pvc-in-pods/)
+- Take me the [Lecture](https://kodekloud.com/topic/using-pvc-in-pods/)
 
 In this section, we will take a look at **Using PVC in PODs**
 
-- In this case, Pods access storage by using the claim as a volume. Persistent Volume Claim must exist in the same namespace as the Pod using the claim. 
+- In this case, Pods access storage by using the claim as a volume.
+- Persistent Volume Claim must exist in the same namespace as the Pod using the claim.
 - The cluster finds the claim in the Pod's namespace and uses it to get the Persistent Volume backing the claim. The volume is then mounted to the host and into the Pod.
 - Persistent Volume is a cluster-scoped and Persistent Volume Claim is a namespace-scoped.
 
@@ -20,13 +21,14 @@ metadata:
 spec:
     accessModes: [ "ReadWriteOnce" ]
     capacity:
-     storage: 1Gi
-    hostPath:
-     path: /tmp/data
+       storage: 1Gi
+    awsElasticBlockStore:
+       volumeID: <Volume_id>
+       fsType: ext4   # Filesystem type, optional
 ```
+
 ```
 $ kubectl create -f pv-definition.yaml
-
 ```
 
 #### Create the Persistent Volume Claim
@@ -44,6 +46,7 @@ spec:
    requests:
      storage: 1Gi
 ```
+
 ```
 $ kubectl create -f pvc-definition.yaml
 ```
@@ -69,21 +72,18 @@ spec:
       persistentVolumeClaim:
         claimName: myclaim
 ```
+
 ```
 $ kubectl create -f pod-definition.yaml
-
 ```
 
 #### List the Pod,Persistent Volume and Persistent Volume Claim
 
 ```
 $ kubectl get pod,pvc,pv
-
 ```
 
 #### References Docs
 
 - https://kubernetes.io/docs/concepts/storage/persistent-volumes/#claims-as-volumes
-
-
 
