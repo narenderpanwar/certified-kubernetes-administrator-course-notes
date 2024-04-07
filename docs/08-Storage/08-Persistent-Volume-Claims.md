@@ -1,6 +1,5 @@
 ## Persistent Volumes, Persistent Volume Claims, and Storage Classes in Kubernetes
 
-
 ### Challenges of Storing Data in Pods
 
 * **Pod restarts:** When a pod restarts, any data stored locally within the pod is lost.
@@ -23,125 +22,57 @@
 
 ### Persistent Volume Claims (PVCs)
 
-- A persistent volume claim (PVC) is a request to use the Persistent Volume (PV) storage submitted by a pod. It acts as a resource request for a PV that meets specific criteria.
-- Similar to requesting CPU or memory resources, a pod specifies its storage needs through a PVC. The PVC defines the size of the storage required and the access mode (read-write-once, read-only, read-write many).
+- A persistent volume claim (PVC) is a request to use the Persistent Volume (PV) storage submitted by a pod.
+- Once a PVC is created, Kubernetes tries to find a suitable PV that matches the PVC's requirements. This matching process considers factors like `access mode`, `storage class`, and `storage availability`.
+- If properties not matches or PV is not available for the PVC then it will display the pending state.
+  
+  ```
+  kind: PersistentVolumeClaim
+  apiVersion: v1
+  metadata:
+  name: myclaim
+  spec:
+    accessModes: [ "ReadWriteOnce" ]
+    resources:
+        requests:
+          storage: 1Gi
+  ```
 
+### PV and PVC Binding
 
-### Storage Classes
-
-A storage class provides a way to automate the provisioning of PVs based on predefined storage types and configurations. It acts as a template for PVs, defining characteristics like performance tier (high performance, standard), reclaim policy (retain or delete the PV when the PVC is deleted), and the underlying storage provider details (e.g., provisioning parameters for AWS EBS).
-
-**Key Points about Storage Classes:**
-
-* Automates PV provisioning based on predefined configurations.
-* Defines storage type, reclaim policy, and underlying storage provider details.
-* Allows defining different storage options for pods based on their needs.
-* Defined in a YAML file specifying details like provisioner (e.g., kubernetes.io/aws-ebs), parameters for the provisioner (e.g., volume type for AWS EBS), reclaim policy, and optionally, specific storage class name.
+- Kubernetes decides on what basis a PV (Persistent Volume) attaches to a PVC (Persistent Volume Claim).
+- Before binding any PVC to a PV, Kubernetes checks two things: `size` and `access modes`.
+- Inside a cluster, there can be multiple PVs of different sizes, and based on the resource requirement of the pod, we can also create PVCs. Let's say we created a PVC with a resource requrement of 2GB. In that case, not all PVs will qualify during the first selection, so they will be filtered out.
+- There is a second factor which is access modes. Access modes determine how the storage created by us will access the pod. We have three access modes: the first is ReadWriteOnce, the second is ReadOnlyMany, and the third is ReadWriteMany. ReadWrite means that a pod will access the storage to perform both read and write operations. ReadOnlyMany means that multiple pods will only read data from storage, and the last one means that multiple pods can access storage to perform both read and write operations.
+  
+  ![class-17](../../images/pvc.png)
+- Now, suppose we created a PVC of size 1GB, and in the cluster, only one PV matched its specifications, and its size was 10GB. If its access modes also match with PVC, then Kubernetes will bind that PV to the PVC, and the remaining 9GB of storage will be wasted because a PV can only be bound to one PVC.
+- Suppose another PVC of size 2GB comes into the cluster, and no PV matches its specifications. In such a condition, the PVC remains in a pending state; no binding happens, and no one else is affected.
+  ![class-17](../../images/pvc1.png)
 
 ### Provisioning Strategies
 
-There are two main strategies for provisioning PVs:
-
-* **Static Provisioning:**
-  * The administrator manually creates both the PV and the PVC with specific details about storage capacity, access modes, and underlying storage configuration.
-  * This approach is suitable for smaller clusters or workloads with predictable storage requirements.
-* **Dynamic Provisioning:**
-  * The administrator creates a storage class defining the desired storage characteristics.
-  * When a pod creates a PVC referencing a specific storage class, the Kubernetes system automatically provisions a PV that matches the PVC requirements based on the storage class definition.
-  * This approach is ideal for larger clusters or workloads with varying storage needs, offering greater flexibility and automation.
-
-### How PVs, PVCs, and Storage Classes Work Together
-
-1. The administrator provisions PVs on the chosen storage provider or configures local/network storage options.
-2. The administrator defines storage classes with specific configurations for different storage tiers or types.
-3. Pods specify their storage needs through PVCs, requesting a certain size and access mode. Optionally, they can reference a specific storage class for automated provisioning.
-4. When a PVC is created:
-   * If a matching static PV exists, the PVC is bound to that PV.
-   * If dynamic provisioning is used and a storage class is referenced in the PVC, the Kubernetes system automatically provisions a new PV
-
-# Persistent Volume Claims
-
-- Take me to [Lecture](https://kodekloud.com/topic/persistent-volume-claims-4/)
-
-In this section, we will take a look at **Persistent Volume Claim**
-
-- Now we will create a Persistent Volume Claim to make the storage available to the node.
-- Volumes and Persistent Volume Claim are two separate objects in the Kubernetes namespace.
-- Once the Persistent Volume Claim created, Kubernetes binds the Persistent Volumes to claim based on the request and properties set on the volume.
+- **Static Provisioning:**
+  We've seen how the cluster administrator creates storage on the cloud and the respective PV creates in the cluster. And the user creates PVC according to the retirement of their pod. Here, the cluster administrator creating storage and the PV creating manually in the cluster is called static provisioning, where you manually provision things.
+- **Dynamic Provisioning:**
   
-  ![class-17](../../images/class17.PNG)
-- If properties not matches or Persistent Volume is not available for the Persistent Volume Claim then it will display the pending state.
+  But there can also be a condition where the user creates a PVC, and there is no matching of PV in the cluster to bind. Will the user keep requesting the administrator to create a PV according to their retirement? In such a condition, dynamic provisioning comes into play.
+  
+  - In dynamic provisioning, the administrator uses storage classes to instruct them on creating PVs automatically and keeping them ready in the cluster. Now, let's talk about what storage classes are.
+  - In simple terms, the cluster administrator who was manually creating storage and PVs in the cluster, is automatically done by storage classes. If we look at the yaml file of the storage class, there is a field called provisioner where we specify which cloud provider we want to provision storage on.
+  - Suppose we want to create an EBS on AWS, then we mention gp2 in the type field of the parameter. And the last important field is reclaim policy, where we mention whether we want to retain or delete the data. Since storage class creates PVs, we specify the reclaim policy of the PV in the PVC yaml file.
+  - Apart from these three, there are also some other fields which we will understand as we encounter them. So, this is how we create storage class, PV, and PVC together, and how the entire flow works within the community.
+  - __Storage Classes__:
 
-```
-pvc-definition.yaml
+    ```
+    apiVersion: storage.k8s.io/v1
+        kind: StorageClass
+        metadata:
+          name: fast
+        provisioner: kubernetes.io/aws-ebs
+        parameters:
+          type: gp2
+    ```
 
-kind: PersistentVolumeClaim
-apiVersion: v1
-metadata:
-  name: myclaim
-spec:
-  accessModes: [ "ReadWriteOnce" ]
-  resources:
-   requests:
-     storage: 1Gi
-```
 
-```
-pv-definition.yaml
-
-kind: PersistentVolume
-apiVersion: v1
-metadata:
-    name: pv-vol1
-spec:
-    accessModes: [ "ReadWriteOnce" ]
-    capacity:
-     storage: 1Gi
-    hostPath:
-     path: /tmp/data
-```
-
-#### Create the Persistent Volume
-
-```
-$ kubectl create -f pv-definition.yaml
-persistentvolume/pv-vol1 created
-
-$ kubectl get pv
-NAME      CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS      CLAIM   STORAGECLASS   REASON   AGE
-pv-vol1   1Gi        RWO            Retain           Available                                   10s
-```
-
-#### Create the Persistent Volume Claim
-
-```
-$ kubectl create -f pvc-definition.yaml
-persistentvolumeclaim/myclaim created
-
-$ kubectl get pvc
-NAME      STATUS    VOLUME   CAPACITY   ACCESS MODES   STORAGECLASS   AGE
-myclaim   Pending                                                     35s
-
-$ kubectl get pvc
-NAME      STATUS   VOLUME    CAPACITY   ACCESS MODES   STORAGECLASS   AGE
-myclaim   Bound    pv-vol1   1Gi        RWO                           1min
-```
-
-#### Delete the Persistent Volume Claim
-
-```
-$ kubectl delete pvc myclaim
-```
-
-#### Delete the Persistent Volume
-
-```
-$ kubectl delete pv pv-vol1
-```
-
-#### Kubernetes Persistent Volume Claims Reference Docs
-
-- https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistentvolumeclaims
-- https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#persistentvolumeclaim-v1-core
-- https://docs.cloud.oracle.com/en-us/iaas/Content/ContEng/Tasks/contengcreatingpersistentvolumeclaim.htm
 
