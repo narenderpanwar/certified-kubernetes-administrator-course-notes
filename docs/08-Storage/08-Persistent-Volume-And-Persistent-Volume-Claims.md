@@ -38,6 +38,7 @@
           storage: 1Gi
   ```
 
+
 ### PV and PVC Binding
 
 - Kubernetes decides on what basis a PV (Persistent Volume) attaches to a PVC (Persistent Volume Claim).
@@ -74,9 +75,9 @@
           type: gp2
         reclaimPolicy: Retain
     ```
-  
+    
     Use in PVC:
-
+    
     ```
     kind: PersistentVolumeClaim
     apiVersion: v1
