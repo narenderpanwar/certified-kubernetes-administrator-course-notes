@@ -72,6 +72,7 @@
         provisioner: kubernetes.io/aws-ebs
         parameters:
           type: gp2
+        volumeBindingMode: WaitForFirstConsumer
         reclaimPolicy: Retain
     ```
     
@@ -89,4 +90,23 @@
             storage: 1Gi
       storageClassName: fast
     ```
+  
+  #### Attributes of Storage Class:
+  
+  1. ​**volumeBindingMode**​: `volumeBindingMode` is an attribute of the StorageClass resource that determines when volume binding should occur. It can take one of the following values:
+  
+      * `Immediate`: With this mode, volume binding occurs as soon as a PVC using this StorageClass is created. Kubernetes will immediately attempt to bind a PV that matches the requirements of the PVC. If no suitable PV is available, the PVC remains in a pending state until a PV becomes available or is dynamically provisioned.
+      * `WaitForFirstConsumer`: In this mode, volume binding is delayed until the PVC is actually used by a pod. Kubernetes waits until a pod using the PVC is scheduled onto a node before binding a PV to the PVC. This mode is useful when you want to ensure that storage resources are only provisioned when they are actually needed by a pod, which can help to reduce resource wastage.
+  
+  2. ​**provisioner**​: `provisioner` specifies the provisioner responsible for creating persistent volumes. A provisioner is essentially a plugin or controller that interacts with the underlying storage system (e.g., cloud provider's storage service, local disk, network storage, etc.) to dynamically provision volumes based on PVC requests.
+     For example, if you're using AWS Elastic Block Store (EBS) as your storage backend, you would specify the provisioner as `kubernetes.io/aws-ebs`.
+  3. ​**reclaimPolicy**​: The `reclaimPolicy` attribute is used to specify what action should be taken when a PersistentVolume (PV) is released.
+
+
+      There are three reclaim policies:
+
+      - `Retain`: With this policy, the volume is not deleted automatically when the corresponding PersistentVolumeClaim (PVC) is deleted. Instead, the PV retains the data and must be manually deleted by the administrator. This policy is useful when you want to retain data even after the associated PVC is deleted.
+      - `Delete`: With this policy, the volume is automatically deleted when the corresponding PVC is deleted. The underlying storage resource is also deleted. This is the default policy if none is specified.
+      - `Recycle` (Deprecated): This policy is deprecated and may be removed in future versions of Kubernetes. With this policy, the volume is not deleted when the PVC is deleted, but the contents are not retained either. Kubernetes attempts to delete the contents of the volume and make it available for reuse.
+
 
