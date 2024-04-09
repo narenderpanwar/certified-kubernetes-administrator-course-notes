@@ -67,9 +67,7 @@ In this section, we will take a look at TLS Basics
 - So we generate a public and private key pair on the server. The SSH keygen command that was used earlier to create a pair of keys, was for SSH purposes. Here we use the open SSL command to generate a private and public key pair.
   
   ![openssl](../../images/openssl.png)
-
-
-- When the user first accesses the web server using HTTPS, he gets the public key from the server. Since the hacker is sniffing all traffic, let us assume he too gets a copy of the public key.
+- `When the user first accesses the web server using HTTPS, he gets the public key from the server`. Since the hacker is sniffing all traffic, let us assume he too gets a copy of the public key.
   ![openssl](../../images/ssl.png)
 - The user, in fact, the user's browser then encrypts the symmetric key using the public key provided by the server and the symmetric key is now secure.
   ![openssl](../../images/ssl1.png)
