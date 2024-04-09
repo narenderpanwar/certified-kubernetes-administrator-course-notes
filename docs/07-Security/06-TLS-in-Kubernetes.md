@@ -4,7 +4,10 @@
 
 In this section, we will take a look at TLS in kubernetes
 
-- In the previous lecture we learned what public and private keys are. How a server uses public and private keys to secure connectivity. We will call them server certificates. We saw what a Certificate Authority is. We learned that the CA has its own set of public and private keepers that it uses to sign server certificates. We will call them root certificates. We also saw how a server can request a client to verify themselves using client certificates.
+- In the previous lecture we learned what public and private keys are.
+- How a server uses public and private keys to secure connectivity. We will call them server certificates.
+- We saw what a Certificate Authority is. We learned that the CA has its own set of public and private keepers that it uses to sign server certificates. We will call them root certificates.
+- We also saw how a server can request a client to verify themselves using client certificates.
 - So, there are three types of certificates:
   
   - **`Server certificates`** configured on the servers,
