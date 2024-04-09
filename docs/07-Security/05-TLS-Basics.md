@@ -118,6 +118,9 @@ What if you could look at the public key you received from the server and say if
   ![cert12](../../images/ca2.png)
 - The browser uses the public key of the CA to validate that the certificate was actually signed by the CA themselves. You can actually see them in the settings of your web browser under certificates, they're under trusted CAs tab.
   ![cert13](../../images/ca3.png)
+- However, for private sites within your organizations (e.g., payroll or internal email applications), organizations can host their own private CAs.
+- Many companies offer private CA server solutions for internal use, allowing organizations to establish secure connectivity within their network.
+- By installing the public key of the internal CA server on employees&#39; browsers, organizations can ensure secure communication within their organization.
 
 ## Certificates naming convention
 
