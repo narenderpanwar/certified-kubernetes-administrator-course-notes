@@ -19,7 +19,7 @@ In this section, we will take a look at authentication in a kubernetes cluster
 - Kubernetes does not natively manage **`User`** accounts. It relies on external sources like files with user & password details, certificates, or third-party identity services (e.g., LDAP). Hence, we cannot create Users `kubectl create user user1`  like this.
 - However, incase of **`Service accounts`** Kubernetes can manage them. So we can create and manage Service accounts like `kubectl create sa sa1`
 
-![acc2](../../images/acc2.PNG)
+  ![acc2](../../images/acc2.PNG)
 
 - All user access is managed by the kube apiserver and all of the requests goes through apiserver.
 - The kube apiserver then authenticates before processing them.
