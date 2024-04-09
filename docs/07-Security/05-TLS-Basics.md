@@ -73,7 +73,7 @@ In this section, we will take a look at TLS Basics
   ![openssl](../../images/ssl1.png)
 - The user then sends this to the server. The hacker also gets a copy. The server uses the private key to decrypt the message and retrieve the symmetry key from it. However, the hacker does not have the private key to decrypt and retrieve the symmetric key from the message. The hacker only has the public key with which he can only lock or encrypt a message and not decrypt the message. Hence, the symmetric key is now safely available only to the user and the server.
   ![openssl](../../images/ssl2.png)
-- The receiver can use the same symmetric key to decrypt data and retrieve information. The hacker is left with the encrypted messages and public keys with which he can't decrypt any data. `With Asymmetric encryption, we have successfully transferred the symmetric keys from the user to the server, and with **`Symmetric encryption`** we have secured all future communication between them`.
+- The receiver can use the same symmetric key to decrypt data and retrieve information. The hacker is left with the encrypted messages and public keys with which he can't decrypt any data. With **`asymmetric encryption`**, we have successfully transferred the symmetric keys from the user to the server, and with **`symmetric encryption`** we have secured all future communication between them.
   
   ![cert5](../../images/cert5.PNG)
 
