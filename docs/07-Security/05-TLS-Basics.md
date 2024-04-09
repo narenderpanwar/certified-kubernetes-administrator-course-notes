@@ -33,9 +33,8 @@ In this section, we will take a look at TLS Basics
 
 - Instead of using single key to encrypt and decrypt data, asymmetric encryption uses a pair of keys, a **`private key`** and a **`public key`** (say **`public lock`** for the sake of simplicity)
 - A key, which is only with me, so it's private and a lock that anyone can access, so it's public.
-
+  
   ![ae](../../images/ae1.png)
-
 - If you encrypt or lock the data with your lock, you can only open it with the associated private key. So your private key must always be secure with you and not be shared with anyone else, it's private, but the lock is public and maybe shared with others, but they can only lock something with it.
   
   ![ae](../../images/ae2.png)
@@ -69,7 +68,6 @@ In this section, we will take a look at TLS Basics
   
   ![openssl](../../images/openssl.png)
 
----
 
 - When the user first accesses the web server using HTTPS, he gets the public key from the server. Since the hacker is sniffing all traffic, let us assume he too gets a copy of the public key.
   ![openssl](../../images/ssl.png)
