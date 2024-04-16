@@ -3,11 +3,10 @@
 ## What is etcd?
 
 - etcd is a distributed key-value store that offers high availability, reliability, and security. It's designed to store and retrieve data in a simple and fast way. Here's a breakdown of its key features:
-
+  
   * **Distributed:** Data is stored across multiple servers, ensuring redundancy and fault tolerance. Even if one server fails, the data remains accessible.
   * **Reliable:** etcd uses the Raft consensus algorithm to guarantee data consistency across all servers. This means that writes are replicated and agreed upon by the majority of nodes before being committed.
   * **Secure:** etcd supports secure communication using Transport Layer Security (TLS) and optional client certificate authentication.
-
 
 ## Stepping into the Cluster
 
@@ -23,7 +22,7 @@
 - But how do we ensure all servers in the cluster have the same data?
 - This is where the Raft consensus algorithm comes into play. Raft works by electing a leader node among the servers. The leader is responsible for processing write requests and replicating them to all followers (other servers in the cluster).
 
-Here's a simplified example of how Raft works in a three-node cluster:
+  Here's a simplified example of how Raft works in a three-node cluster:
 
 1. **Leader Election:** Initially, there's no leader. Each server initiates a random timer. The first server to finish its timer becomes the leader and informs the others.
 2. **Write Requests:** When a client wants to write data, it sends the request to any server.
@@ -51,10 +50,10 @@ Having an odd number of servers in your etcd cluster is generally recommended. H
 ## Choosing the Right Cluster Size
 
 - The ideal number of servers in your etcd cluster depends on your specific needs. Here's a breakdown to consider:
-
+  
   * **Minimum for HA (High Availability):** Three nodes is the minimum required for a highly available cluster. This ensures that even if one node fails, the cluster remains operational.
   * **Balancing Fault Tolerance and Cost:** Five nodes offer a higher level of fault tolerance compared to three. However, with more nodes comes increased cost and complexity.
   * **Beyond Five: Not Always Necessary** Generally, a cluster with five nodes provides sufficient fault tolerance for most deployments. Adding more nodes beyond that might not offer significant benefits.
-
+  
   Ultimately, the choice depends on your environment's fault tolerance requirements and resource constraints.
 
