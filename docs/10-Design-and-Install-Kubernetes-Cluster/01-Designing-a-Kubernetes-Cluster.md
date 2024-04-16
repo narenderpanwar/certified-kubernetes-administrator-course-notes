@@ -9,7 +9,7 @@ Here's a breakdown of the key points:
 * **Cloud Adoption:** Decide if you'll use a managed cloud platform or self-host the cluster.
 * **Workload:** Consider the type of workloads the cluster will handle (web applications, big data, etc.) and their resource requirements.
 * **Network Traffic:** Understand the expected network traffic patterns (continuous heavy traffic or bursts).
-
+  
   ![k8s-design](../../images/design.png)
 
 ## **Cluster Options:**
@@ -47,17 +47,16 @@ Here's a breakdown of the key points:
   * Multiple concurrent access: Consider network-based storage.
   * Shared access across pods: Use persistent storage volumes.
   * Storage classes: Define different storage classes and allocate them based on application needs.
+    
+   ![k8s-design](../../images/design3.png)
 
 ## **Master vs. Worker Nodes:**
 
 * **Master:** Hosts control plane components (API server, scheduler, etc.).
 * **Worker:** Hosts containerized workloads (pods).
-* **Best Practice:** Dedicate master nodes for control plane components only, especially in production (kubeadm can enforce this).
+* **Best Practice:**
+  * Dedicate master nodes for control plane components only, especially in production (kubeadm can enforce this).
+  * In large clusters, consider separating the etcd cluster from master nodes into its own cluster for high availability.
 
-**Additional Notes:**
 
-* Use a 64-bit Linux operating system for all nodes.
-* In large clusters, consider separate nodes for the etcd cluster (discussed later).
-* Refer to the lecture references for more details and resources.
-* Certification exams likely won't require memorizing specific numbers; refer to documentation for details.
 
